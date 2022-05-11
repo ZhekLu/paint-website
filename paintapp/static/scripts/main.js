@@ -4,7 +4,7 @@ const temp_canvas = document.getElementById('pre_canvas')
 const ctx = temp_canvas.getContext('2d');
 ctx.lineWidth = 2;
 
-let manager = new Manager(temp_canvas);
+let manager = new Manager(canvas, temp_canvas);
 temp_canvas.addEventListener('mousedown', manager);
 temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);

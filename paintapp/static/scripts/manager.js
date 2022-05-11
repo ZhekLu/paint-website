@@ -1,7 +1,7 @@
 class Manager {
-    constructor(canvas, def_tool = 'line') {
+    constructor(canvas, temp_canvas, def_tool = 'line') {
         this.tool = def_tool;
-        this.rect = new RectangleTool(canvas);
+        this.rect = new RectangleTool(canvas, temp_canvas);
     }
 
     set_tool(tool) {
@@ -9,7 +9,6 @@ class Manager {
     }
 
     handleEvent(event) {
-        // alert('ok');
         switch (this.tool) {
             case 'rectangle':
                 this.rect.handleEvent(event);
