@@ -13,7 +13,6 @@ class Ellipse extends Figure{
             Math.abs(this.radX),
             Math.abs(this.radY),
             0, 0, 2 * Math.PI);
-        // this.ctx.ellipse(100, 100, 50, 75, Math.PI / 4, 0, 2 * Math.PI);
         this.ctx.stroke();
         if(this.fill) {
             this.ctx.fill();

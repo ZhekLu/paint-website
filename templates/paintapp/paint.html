@@ -54,10 +54,10 @@
 
     {% load static %}
     {# scripts #}
-    <script src="{% static 'scripts/figure.js' %}"></script>
-    <script src="{% static 'scripts/ellipse.js' %}"></script>
-    <script src="{% static 'scripts/rectangle.js' %}"></script>
-    <script src="{% static 'scripts/rectangle_tool.js' %}"></script>
-    <script src="{% static 'scripts/manager.js' %}"></script>
-    <script src="{% static 'scripts/main.js' %}"></script>
+    <script defer src="{% static 'scripts/figure.js' %}"></script>
+    <script defer src="{% static 'scripts/ellipse.js' %}"></script>
+    <script defer src="{% static 'scripts/rectangle.js' %}"></script>
+{#    <script src="{% static 'scripts/rectangle_tool.js' %}"></script>#}
+    <script defer src="{% static 'scripts/manager.js' %}"></script>
+    <script defer src="{% static 'scripts/main.js' %}"></script>
 {% endblock %}
