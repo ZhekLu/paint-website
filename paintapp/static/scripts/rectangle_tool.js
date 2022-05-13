@@ -9,7 +9,12 @@ class RectangleTool {
         switch (event.type) {
             case 'mousedown':
                 // alert('ok');
-                this.current = new Rectangle(this.temp_canvas,
+                // this.current = new Rectangle(this.temp_canvas,
+                //     (event.clientX - this.temp_canvas.offsetLeft),
+                //     (event.clientY - this.temp_canvas.offsetTop),
+                //     true
+                // );
+                this.current = new Ellipse(this.temp_canvas,
                     (event.clientX - this.temp_canvas.offsetLeft),
                     (event.clientY - this.temp_canvas.offsetTop),
                     true
