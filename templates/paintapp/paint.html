@@ -38,7 +38,7 @@
 				}
 			</script>
 			<button id="clear" class="shape">Clear</button>
-			<button id="circle" class="shape" onclick="set_tool('circle')">Circle</button>
+			<button id="circle" class="shape" onclick="set_tool('circle')">Ellipse</button>
 			<button id="rectangle" class="shape" onclick="set_tool('rectangle')">Rectangle</button>
 			<button id="line" class="shape" onclick="set_tool('line')">Line</button>
 		</div>
@@ -55,9 +55,9 @@
     {% load static %}
     {# scripts #}
     <script defer src="{% static 'scripts/figure.js' %}"></script>
+    <script defer src="{% static 'scripts/line.js' %}"></script>
     <script defer src="{% static 'scripts/ellipse.js' %}"></script>
     <script defer src="{% static 'scripts/rectangle.js' %}"></script>
-{#    <script src="{% static 'scripts/rectangle_tool.js' %}"></script>#}
     <script defer src="{% static 'scripts/manager.js' %}"></script>
     <script defer src="{% static 'scripts/main.js' %}"></script>
 {% endblock %}

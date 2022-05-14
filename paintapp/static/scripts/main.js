@@ -8,6 +8,7 @@ let manager = new Manager(canvas, temp_canvas);
 temp_canvas.addEventListener('mousedown', manager);
 temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);
+temp_canvas.addEventListener('dblclick', manager);
 
 
 function set_tool(tool) {
@@ -15,8 +16,9 @@ function set_tool(tool) {
 }
 
 function color (color_value){
-    ctx.strokeStyle = color_value;
-    ctx.fillStyle = color_value;
+    manager.set_color(color_value, true);
+    // ctx.strokeStyle = color_value;
+    // ctx.fillStyle = color_value;
 }
 
 function reset (){
