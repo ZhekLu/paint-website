@@ -1,8 +1,8 @@
 class PolygonalChain extends Figure{
     constructor(canvas, x, y, endX = [], endY = []) {
         super(canvas, x, y, false);
-        this.currentX = 0;
-        this.currentY = 0;
+        this.currentX = null;
+        this.currentY = null;
 
         this.endX = endX;
         this.endY = endY;
@@ -14,14 +14,13 @@ class PolygonalChain extends Figure{
         for(let i = 0; i < this.endX.length; i++) {
             this.ctx.lineTo(this.endX[i], this.endY[i]);
         }
-        if (this.currentX !== 0 && this.currentY !== 0)
-            this.ctx.lineTo(this.currentX, this.currentY);
+        this.ctx.lineTo(this.currentX, this.currentY);
         this.ctx.stroke();
         this.ctx.closePath();
     }
 
     fix() {
-        if (this.currentY === 0 && this.currentX === 0)
+        if (this.currentY === null && this.currentX === null)
             return;
         this.endX.push(this.currentX);
         this.endY.push(this.currentY);

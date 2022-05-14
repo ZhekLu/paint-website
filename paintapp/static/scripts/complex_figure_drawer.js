@@ -35,6 +35,10 @@ class ComplexFigureDrawer extends Drawer{
                 );
                 break;
             case 'polygon':
+                this.current_figure = new Polygon(this.temp_canvas,
+                    (mouseX - this.temp_canvas.offsetLeft),
+                    (mouseY - this.temp_canvas.offsetTop)
+                );
                 break;
         }
     }
