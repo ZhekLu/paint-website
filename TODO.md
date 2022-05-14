@@ -2,15 +2,15 @@
 _______________
 
 ## Paint Application
-- [ ] Choosing drawing figure:
+- [x] Choosing drawing figure:
   - [x] line
   - [x] rectangle
   - [x] ellipse
   - [x] polygon chain
   - [x] polygon
-- [ ] Choosing drawing settings:
-  - [ ] fill color
-  - [ ] line width/color
+- [x] Choosing drawing settings:
+  - [x] fill color
+  - [x] line width/color
 - [ ] Undo of last drawing
 - [ ] Drawn shapes list
 _____

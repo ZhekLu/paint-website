@@ -5,15 +5,9 @@
 	<div id="toolbar" style="z-index: 3">
 		<div id="rad">
 			<input type="checkbox" id="fill_checker"/>Fill
-    		<br><div id="fulname">File Name: <label id="name" ></label></div>
-    		<p><div id="thick">Size: <select id="selclr" onchange="width()">
-     			<option value=1 selected>2px</option>
-     			<option value=5 >6px</option>
-     			<option value=10>10px</option>
-     			<option value=12 >12px</option>
-     			<option value=14>14px</option>
-     			<option value=18 >18px</option>
-    		</select></div></p>
+            <input type="number" id="width_chooser"
+                   min="1" max="1000" value="2" placeholder="line width">
+            <span class="validity"></span>
 		</div>
 		<div id="colors">
             <input type="color" id="background_color">

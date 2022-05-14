@@ -152,17 +152,16 @@
 	left: 200px;
 }
 
-#thick{
-	font-size: 17px;
-	position: absolute;
-	top: 10px;
-	left: 400px;
-	color: white;
-
+#width_chooser {
+  width: 5em;
 }
 
-#selclr{
-	font-size: 17px;
-	background-color: #2f2f2f;
-	color: white;
+input:invalid+span:after {
+  content: '✖';
+  padding-left: 5px;
+}
+
+input:valid+span:after {
+  content: '✓';
+  padding-left: 5px;
 }
