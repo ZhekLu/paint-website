@@ -1,11 +1,11 @@
 class SimpleFigureDrawer extends Drawer{
-    constructor(canvas, temp_canvas, def_tool = 'line', def_filling = false) {
-        super(canvas, temp_canvas, def_tool, def_filling);
-        this.supported_figures = ['line', 'rectangle', 'circle'];
-    }
-
-    is_supported(figure) {
-        return this.supported_figures.includes(figure);
+    constructor(canvas, temp_canvas, def_filling = false, def_tool = 'line') {
+        super(canvas, temp_canvas, def_tool, def_filling,
+            {
+                'line': Line,
+                'rectangle': Rectangle,
+                'circle': Ellipse
+            });
     }
 
     handleEvent(event) {

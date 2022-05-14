@@ -1,6 +1,6 @@
 class Line extends Figure{
     constructor(canvas, x, y, endX=0, endY=0) {
-        super(canvas, x, y, false);
+        super(canvas, x, y, null);
         this.endX = endX;
         this.endY = endY;
     }

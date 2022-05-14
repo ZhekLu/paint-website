@@ -1,5 +1,6 @@
 class Figure {
     constructor(canvas, x, y, filled) {
+        this.fillable = filled !== null;
         this.fill = filled;
         this.startX = x;
         this.startY = y;
@@ -8,6 +9,10 @@ class Figure {
 
         this.ctx.beginPath();
         this.ctx.moveTo(this.startX, this.startY);
+    }
+
+    is_fillable() {
+        return this.fillable;
     }
 
     draw() {

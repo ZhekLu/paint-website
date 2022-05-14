@@ -20,6 +20,6 @@ function color (color_value){
 }
 
 function reset (){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    manager.reset();
 }
 

@@ -31,13 +31,7 @@
 	</div>
 	<div id="footbar" style="z-index: 2">
 		<div id="shapset">
-			<button id="clear" class="shape" style="color: orange;">Gallery</button>
-			<script>
-				function gallery() {
-					document.location.href="/display/";
-				}
-			</script>
-			<button id="clear" class="shape">Clear</button>
+			<button id="clear" class="shape" onclick="reset()">Clear</button>
 			<button id="circle" class="shape" onclick="set_tool('circle')">Ellipse</button>
 			<button id="rectangle" class="shape" onclick="set_tool('rectangle')">Rectangle</button>
 			<button id="line" class="shape" onclick="set_tool('line')">Line</button>

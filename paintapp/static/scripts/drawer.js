@@ -1,10 +1,11 @@
 class Drawer {
-    constructor(canvas, temp_canvas, def_tool, def_filling) {
+    constructor(canvas, temp_canvas, def_tool, def_filling, supported_figures={}) {
         this.tool = def_tool;
         this.current_figure = null;
         this.temp_canvas = temp_canvas;
         this.main_canvas = canvas;
         this.figure_fill = def_filling;
+        this.supported_figures = supported_figures;
     }
 
     set_filling(is_filled){
@@ -13,6 +14,10 @@ class Drawer {
 
     set_tool(tool) {
         this.tool = tool;
+    }
+
+    is_supported(figure) {
+        return figure in this.supported_figures;
     }
 
     handleEvent(event) {
