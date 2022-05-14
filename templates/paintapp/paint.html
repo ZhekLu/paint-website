@@ -41,6 +41,8 @@
 			<button id="circle" class="shape" onclick="set_tool('circle')">Ellipse</button>
 			<button id="rectangle" class="shape" onclick="set_tool('rectangle')">Rectangle</button>
 			<button id="line" class="shape" onclick="set_tool('line')">Line</button>
+			<button id="polygon" class="shape" onclick="set_tool('polygon')">Polygon</button>
+			<button id="chain" class="shape" onclick="set_tool('polygonal_chain')">Chain</button>
 		</div>
 		<div id="filename">
 			<input id="fname">
@@ -56,8 +58,12 @@
     {# scripts #}
     <script defer src="{% static 'scripts/figure.js' %}"></script>
     <script defer src="{% static 'scripts/line.js' %}"></script>
+    <script defer src="{% static 'scripts/polygonal_chain.js' %}"></script>
     <script defer src="{% static 'scripts/ellipse.js' %}"></script>
     <script defer src="{% static 'scripts/rectangle.js' %}"></script>
+    <script defer src="{% static 'scripts/drawer.js' %}"></script>
+    <script defer src="{% static 'scripts/simple_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'scripts/complex_figure_drawer.js' %}"></script>
     <script defer src="{% static 'scripts/manager.js' %}"></script>
     <script defer src="{% static 'scripts/main.js' %}"></script>
 {% endblock %}

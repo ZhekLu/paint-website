@@ -5,10 +5,19 @@ class Manager {
         this.temp_canvas = temp_canvas;
         this.main_canvas = canvas;
         this.figure_fill = def_filling;
+
+        this.simple_drawer = new SimpleFigureDrawer(canvas, temp_canvas);
+        this.complex_drawer = new ComplexFigureDrawer(canvas, temp_canvas);
+        this.current_drawer = null;
+        this.set_tool(def_tool);
     }
 
     set_tool(tool) {
         this.tool = tool;
+        this.current_drawer = this.is_simple()
+            ? this.simple_drawer
+            : this.complex_drawer;
+        this.current_drawer.set_tool(tool);
     }
 
     set_color(color, is_fill=false) {
@@ -20,67 +29,16 @@ class Manager {
 
     set_filling(is_filled){
         this.figure_fill = is_filled;
+        this.simple_drawer.set_filling(is_filled);
+        this.complex_drawer.set_filling(is_filled);
     }
 
     handleEvent(event) {
-        switch (event.type) {
-            case 'mousedown':
-                this.create(event.clientX, event.clientY);
-                break;
-
-            case 'mouseup':
-                this.save();
-                break;
-
-            case 'mousemove':
-                this.draw(event.clientX, event.clientY);
-                break;
-
-            case 'dblclick':
-                alert('double');
-                break;
-        }
-
+        this.current_drawer.handleEvent(event);
     }
 
-    create(mouseX, mouseY) {
-        switch (this.tool) {
-            case 'line':
-                this.current_figure = new Line(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop)
-                );
-                break;
-            case 'rectangle':
-                this.current_figure = new Rectangle(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop),
-                    true
-                );
-                break;
-            case 'circle':
-                this.current_figure = new Ellipse(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop),
-                    true
-                );
-                break;
-            case 'polygonal_chain':
-                break;
-            case 'polygon':
-                break;
-        }
+    is_simple() {
+        return this.simple_drawer.is_supported(this.tool)
     }
 
-    save() {
-        this.current_figure = null;
-    }
-
-    draw(mouseX, mouseY) {
-        if (!this.current_figure)
-            return;
-        let x = mouseX - this.temp_canvas.offsetLeft;
-        let y = mouseY - this.temp_canvas.offsetTop;
-        this.current_figure.redraw(x, y);
-    }
 }

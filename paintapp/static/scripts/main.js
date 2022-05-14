@@ -17,8 +17,6 @@ function set_tool(tool) {
 
 function color (color_value){
     manager.set_color(color_value, true);
-    // ctx.strokeStyle = color_value;
-    // ctx.fillStyle = color_value;
 }
 
 function reset (){
