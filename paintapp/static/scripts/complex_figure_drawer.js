@@ -29,28 +29,4 @@ class ComplexFigureDrawer extends Drawer{
         }
 
     }
-
-    create(mouseX, mouseY) {
-        this.current_figure = new this.supported_figures[this.tool](
-            this.temp_canvas,
-            (mouseX - this.temp_canvas.offsetLeft),
-            (mouseY - this.temp_canvas.offsetTop)
-        );
-        // switch (this.tool) {
-        //     case 'polygonal_chain':
-        //         this.current_figure = new PolygonalChain(this.temp_canvas,
-        //             (mouseX - this.temp_canvas.offsetLeft),
-        //             (mouseY - this.temp_canvas.offsetTop)
-        //         );
-        //         break;
-        //     case 'polygon':
-        //         this.current_figure = new Polygon(this.temp_canvas,
-        //             (mouseX - this.temp_canvas.offsetLeft),
-        //             (mouseY - this.temp_canvas.offsetTop)
-        //         );
-        //         break;
-        // }
-    }
-
-
 }

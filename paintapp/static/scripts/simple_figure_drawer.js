@@ -24,30 +24,4 @@ class SimpleFigureDrawer extends Drawer{
         }
 
     }
-
-    create(mouseX, mouseY) {
-        switch (this.tool) {
-            case 'line':
-                this.current_figure = new Line(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop)
-                );
-                break;
-            case 'rectangle':
-                this.current_figure = new Rectangle(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop),
-                    true
-                );
-                break;
-            case 'circle':
-                this.current_figure = new Ellipse(this.temp_canvas,
-                    (mouseX - this.temp_canvas.offsetLeft),
-                    (mouseY - this.temp_canvas.offsetTop),
-                    true
-                );
-                break;
-        }
-    }
-
 }

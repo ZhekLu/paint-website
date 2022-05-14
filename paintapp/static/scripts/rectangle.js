@@ -1,5 +1,5 @@
 class Rectangle extends Figure{
-    constructor(canvas, x, y, filled, height=0, width=0) {
+    constructor(canvas, x, y, filled = false, height=0, width=0) {
         super(canvas, x, y, filled);
         this.height = height;
         this.width = width;

@@ -29,6 +29,15 @@ class Drawer {
         // TODO!
     }
 
+     create(mouseX, mouseY) {
+        this.current_figure = new this.supported_figures[this.tool](
+            this.temp_canvas,
+            (mouseX - this.temp_canvas.offsetLeft),
+            (mouseY - this.temp_canvas.offsetTop)
+        );
+        this.current_figure.set_filling(this.figure_fill);
+    }
+
     draw(mouseX, mouseY) {
         if (!this.current_figure)
             return;
