@@ -14,6 +14,9 @@ document.getElementById("background_color").oninput = function () {
 document.getElementById("line_color").oninput = function () {
     manager.set_color(this.value, false);
 }
+document.getElementById("fill_checker").onchange = function () {
+    manager.set_filling(this.checked);
+}
 
 function width() {
     manager.set_width(width_setter.value);

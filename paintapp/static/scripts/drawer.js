@@ -35,7 +35,7 @@ class Drawer {
             (mouseX - this.temp_canvas.offsetLeft),
             (mouseY - this.temp_canvas.offsetTop)
         );
-        this.current_figure.set_filling(this.figure_fill);
+        this.current_figure.set_fill(this.figure_fill);
     }
 
     draw(mouseX, mouseY) {
