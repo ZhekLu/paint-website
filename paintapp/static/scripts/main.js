@@ -8,6 +8,13 @@ temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);
 temp_canvas.addEventListener('dblclick', manager);
 
+document.getElementById("background_color").oninput = function () {
+    manager.set_color(this.value, true);
+}
+document.getElementById("line_color").oninput = function () {
+    manager.set_color(this.value, false);
+}
+
 function width() {
     manager.set_width(width_setter.value);
 }
