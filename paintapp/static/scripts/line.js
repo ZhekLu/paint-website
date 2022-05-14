@@ -9,7 +9,6 @@ class Line extends Figure{
         this.ctx.beginPath();
         this.ctx.moveTo(this.startX, this.startY);
         this.ctx.lineTo(this.endX, this.endY);
-        // this.ctx.lineTo(500, 500);
         this.ctx.stroke();
         this.ctx.closePath();
     }
@@ -18,8 +17,6 @@ class Line extends Figure{
         this.reset();
         this.endX = x;
         this.endY = y;
-        // this.endX = x - this.startX;
-        // this.endY = y - this.startY;
         this.draw();
     }
 }
