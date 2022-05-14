@@ -1,5 +1,6 @@
 class Manager {
-    constructor(canvas, temp_canvas, def_tool = 'line', def_filling = false) {
+    constructor(canvas, temp_canvas,
+                def_tool = 'line', def_filling = false, def_line_width = 2) {
         this.simple_drawer = new SimpleFigureDrawer(canvas, temp_canvas);
         this.complex_drawer = new ComplexFigureDrawer(canvas, temp_canvas);
         this.current_drawer = null;
@@ -11,6 +12,7 @@ class Manager {
 
         this.set_tool(def_tool);
         this.set_filling(def_filling);
+        this.set_width(def_line_width);
     }
 
     set_tool(tool) {
@@ -33,7 +35,7 @@ class Manager {
     }
 
     set_width(value) {
-        // TODO!
+        this.ctx.lineWidth = value;
     }
 
     reset() {

@@ -1,8 +1,6 @@
 const canvas = document.getElementById('canvas');
 const temp_canvas = document.getElementById('pre_canvas')
-
-const ctx = temp_canvas.getContext('2d');
-ctx.lineWidth = 2;
+const width_setter = document.getElementById("selclr");
 
 let manager = new Manager(canvas, temp_canvas);
 temp_canvas.addEventListener('mousedown', manager);
@@ -10,6 +8,9 @@ temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);
 temp_canvas.addEventListener('dblclick', manager);
 
+function width() {
+    manager.set_width(width_setter.value);
+}
 
 function set_tool(tool) {
     manager.set_tool(tool);
