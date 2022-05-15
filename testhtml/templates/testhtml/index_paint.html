@@ -1,0 +1,83 @@
+{% extends 'testhtml/basic.html' %}
+{% load static %}
+
+{#<body>#}
+
+
+
+{% block content %}
+
+<!-- About Section -->
+<section id="paint" class="container-fluid content-section">
+
+    <div id="toolbox" class="toolbox">
+        <button class="button" onclick="set_tool('line')"
+                style="background-image: url('{% static 'testhtml/images/line.svg' %}')"></button>
+        <button class="button" onclick="set_tool('circle')"
+                style="background-image: url('{% static 'testhtml/images/circle.svg' %}')"></button>
+        <button class="button" onclick="set_tool('rectangle')"
+                style="background-image: url('{% static 'testhtml/images/rectangle.svg' %}')"></button>
+        <button class="button" onclick="set_tool('polygonal_chain')"
+                style="background-image: url('{% static 'testhtml/images/curve.svg' %}')"></button>
+        <button class="button" onclick="set_tool('polygon')"
+                style="background-image: url('{% static 'testhtml/images/polygon.svg' %}')"></button>
+{#        <button class="button" id="fill_checker"#}
+{#                style="background-image: url('{% static 'testhtml/images/fill.svg' %}')"></button>#}
+        <button class="button" onclick="reset()"
+                style="background-image: url('{% static 'testhtml/images/erase.svg' %}')"></button>
+        <div id="colors">
+            <input type="color" id="background_color" class="button">
+            <input type="color" id="line_color" class="button">
+		</div>
+        <input type="checkbox" id="fill_checker" class="button"/>Fill
+        <input type="number" id="width_chooser" class="button"
+               min="1" max="1000" value="2" placeholder="line width">
+        <span class="validity"></span>
+    </div>
+    <div id="coords">x:y</div>
+{#    <div id="coords_canvas">(координаты покажутся здесь)</div>#}
+{#    <script>#}
+{#        document.onmousemove = function(e) { // shows mouse coordinates#}
+{#          let c = document.getElementById('coords');#}
+{#          c.innerHTML = e.clientX + ':' + e.clientY;#}
+{#          let cc = document.getElementById('coords_canvas');#}
+{#          const temp_canvas = document.getElementById('pre_canvas');#}
+{#          cc.innerHTML = temp_canvas.offsetLeft + ':' + temp_canvas.offsetTop;#}
+{#        };#}
+{#    </script>#}
+
+	<canvas  id="canvas" width="1360" height="530" style=" background-color: #ffffff; z-index: 0"></canvas>
+	<canvas  id="pre_canvas" width="1360" height="530" style="z-index: 1"></canvas>
+
+    {% load static %}
+    {# scripts #}
+    <script defer src="{% static 'scripts/figure.js' %}"></script>
+    <script defer src="{% static 'scripts/line.js' %}"></script>
+    <script defer src="{% static 'scripts/polygonal_chain.js' %}"></script>
+    <script defer src="{% static 'scripts/polygon.js' %}"></script>
+    <script defer src="{% static 'scripts/ellipse.js' %}"></script>
+    <script defer src="{% static 'scripts/rectangle.js' %}"></script>
+    <script defer src="{% static 'scripts/drawer.js' %}"></script>
+    <script defer src="{% static 'scripts/simple_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'scripts/complex_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'scripts/manager.js' %}"></script>
+    <script defer src="{% static 'scripts/main.js' %}"></script>
+</section>
+
+
+<!-- jQuery -->
+<script src={% static "testhtml/js/jquery.js" %}></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src={% static "testhtml/js/bootstrap.min.js" %}></script>
+
+<!-- Plugin JavaScript -->
+{#<script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.3.1-min.js"></script>#}
+<script src={% static "testhtml/js/jquery.easing.min.js" %}></script>
+<script src={% static "testhtml/js/SmoothScroll.js" %}></script>
+
+<!-- Custom Theme JavaScript -->
+<script src={% static "testhtml/js/basicelement.js" %}></script>
+{% endblock %}
+{#</body>#}
+{#</html>#}

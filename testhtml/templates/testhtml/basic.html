@@ -1,0 +1,78 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PaintWeb{% block title %} {% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link  rel="stylesheet" href={% static "testhtml/css/bootstrap.min.css" %}>
+
+    <!-- Custom CSS -->
+    <link  rel="stylesheet" href= {% static "testhtml/css/basicelement.css" %} >
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <link rel='stylesheet' type='text/css' href="{% static 'testhtml/styles/paint_style.css' %}">
+    <link rel='stylesheet' type='text/css' href="{% static 'testhtml/styles/toolbox.css' %}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+{#    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>#}
+{#    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>#}
+    <![endif]-->
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<!-- Navigation -->
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header nav">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <i class="fa fa-lg fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#">
+                <i class="fa fa-male"></i>  <span class="light">WEB</span>PAINT
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li> -->
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Paint</a>
+                </li>
+                <li>
+                    <a href="#">OldPaint</a>
+                </li>
+                <li>
+                    <a href="#">Gallery</a>
+                </li>
+                <li>
+                    <a href="#">Profile</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>

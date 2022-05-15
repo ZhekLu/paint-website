@@ -123,8 +123,23 @@
 	position: absolute;
 	left:10%;
 	top:10%;
-	border: 3px solid;
-	cursor: crosshair;}
+	border: 0px solid;
+	cursor: crosshair;
+	width: 80%;
+	height: 80%;
+	/*left:100px;*/
+	/*top:300px;*/
+	/*width:1380px;*/
+	/*height: 500px;*/
+}
+
+#coords {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(110, 110, 110, .5);
+	width: 100%;
+}
 
 #fill #outline{
 	float: left;
@@ -175,21 +190,32 @@ input:valid+span:after {
 
 .toolbox {
   box-sizing: border-box;
-  width: 70px;
-  padding: 15px;
-  display: flex;
+	position: absolute;
+	left:0;
+	top:10%;
+	width: 10%;
+	height: 80%;
+	padding: 0 15px 15px;
+	display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
 }
 
 .button {
-  width: 30px;
-  height: 30px;
+	position: relative;
+  width: 60px;
+  height: auto;
+	aspect-ratio: 1/1;
+	horiz-align: center;
   border-radius: 4px;
   transition: all 0.2s;
   padding: 5px;
   box-sizing: border-box;
-  margin: 2px;
+  margin-left: 10px;
+  margin-right: 10px;
+	margin-bottom: 10px;
+	background-repeat: no-repeat;
+	background-color: rgb(110, 110, 110, .5);
 }
 
 
