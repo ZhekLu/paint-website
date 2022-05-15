@@ -8,20 +8,10 @@ temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);
 temp_canvas.addEventListener('dblclick', manager);
 
-let ctx = canvas.getContext('2d');
-for(let i = 0; i < temp_canvas.width; i += 10) {
-    ctx.fillRect(i, 200, 1, 50)
-}
-ctx.fillRect(1000, 200, 50, 50);
-ctx.fillRect(0, 200, 1, 50);
-ctx.fillRect(10, 200, 1, 50);
-ctx.fillRect(20, 200, 1, 50);
-ctx.fillRect(30, 200, 1, 50);
-ctx.fillRect(40, 200, 1, 50);
-ctx.fillRect(50, 200, 1, 50);
-ctx.fillRect(60, 200, 1, 50);
-ctx.fillRect(70, 200, 1, 50);
-ctx.fillRect(80, 200, 1, 50);
+// let ctx = canvas.getContext('2d');
+// for(let i = 0; i < temp_canvas.width; i += 10) {
+//     ctx.fillRect(i, 200, 1, 50)
+// }
 
 document.getElementById("background_color").oninput = function () {
     manager.set_color(this.value, true);

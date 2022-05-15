@@ -1,8 +1,8 @@
-{#{% extends "paintapp/basic.html" %}#}
+{#{% extends "basic.html" %}#}
 
 {% load static %}
-<link rel='stylesheet' type='text/css' href="{% static 'styles/paint_style.css' %}">
-<link rel='stylesheet' type='text/css' href="{% static 'styles/toolbox.css' %}">
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/paint_style.css' %}">
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/toolbox.css' %}">
 
 {% block content %}
 	<div id="toolbar" style="z-index: 3">
@@ -16,12 +16,8 @@
             <input type="color" id="background_color">
             <input type="color" id="line_color">
 		</div>
+        <a href="{% url 'paintapp:info' %}">Back to site</a>
 	</div>
-    <div class="toolbox">
-         <button class="button"></button>
-        <button class="button"></button>
-        <button class="button" style="background: url({% static 'styles/circle.svg' %})"></button>
-        </div>
 
 	<div id="footbar" style="z-index: 2">
 		<div id="shapset">
@@ -44,15 +40,15 @@
 
     {% load static %}
     {# scripts #}
-    <script defer src="{% static 'scripts/figure.js' %}"></script>
-    <script defer src="{% static 'scripts/line.js' %}"></script>
-    <script defer src="{% static 'scripts/polygonal_chain.js' %}"></script>
-    <script defer src="{% static 'scripts/polygon.js' %}"></script>
-    <script defer src="{% static 'scripts/ellipse.js' %}"></script>
-    <script defer src="{% static 'scripts/rectangle.js' %}"></script>
-    <script defer src="{% static 'scripts/drawer.js' %}"></script>
-    <script defer src="{% static 'scripts/simple_figure_drawer.js' %}"></script>
-    <script defer src="{% static 'scripts/complex_figure_drawer.js' %}"></script>
-    <script defer src="{% static 'scripts/manager.js' %}"></script>
-    <script defer src="{% static 'scripts/main.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/figure.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/line.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygonal_chain.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygon.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/ellipse.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/rectangle.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/simple_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/complex_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/manager.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/main.js' %}"></script>
 {% endblock %}

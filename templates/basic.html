@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap4 %}
 
 <!doctype html>
 <html lang="en">
@@ -12,17 +13,17 @@
     <title>PaintWeb{% block title %} {% endblock %}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link  rel="stylesheet" href={% static "testhtml/css/bootstrap.min.css" %}>
+    <link  rel="stylesheet" href={% static "newhtml/css/bootstrap.min.css" %}>
 
     <!-- Custom CSS -->
-    <link  rel="stylesheet" href= {% static "testhtml/css/basicelement.css" %} >
+    <link  rel="stylesheet" href= {% static "newhtml/css/basicelement.css" %} >
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
-    <link rel='stylesheet' type='text/css' href="{% static 'testhtml/styles/paint_style.css' %}">
-    <link rel='stylesheet' type='text/css' href="{% static 'testhtml/styles/toolbox.css' %}">
+    {% block links %}
+    {% endblock %}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,7 +40,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                 <i class="fa fa-lg fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#">
+            <a class="navbar-brand page-scroll" href="{% url 'paintapp:info' %}">
                 <i class="fa fa-male"></i>  <span class="light">WEB</span>PAINT
             </a>
         </div>
@@ -47,22 +48,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <!-- Hidden li included to remove active class from about link when scrolled up past about section
-                <li class="hidden">
-                    <a href="#page-top"></a>
-                </li> -->
                 <li>
-                    <a href="#">About</a>
+                    <a href="{% url 'paintapp:info' %}" target="_blank"
+                    onclick="window.open('http://127.0.0.1:8000/info')">About</a>
                 </li>
                 <li>
-                    <a href="#">Paint</a>
+                    <a href="{% url 'paintapp:new_paint' %}">Paint</a>
                 </li>
                 <li>
-                    <a href="#">OldPaint</a>
+                    <a href="{% url 'paintapp:old_paint' %}">OldPaint</a>
                 </li>
                 <li>
                     <a href="#">Gallery</a>
                 </li>
+{#                // TODO! only if user auth#}
                 <li>
                     <a href="#">Profile</a>
                 </li>

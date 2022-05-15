@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'paintapp.apps.PaintappConfig',
-    'testhtml.apps.TesthtmlConfig',
     'bootstrap4',
 ]
 
