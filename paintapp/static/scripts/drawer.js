@@ -6,6 +6,9 @@ class Drawer {
         this.main_canvas = canvas;
         this.figure_fill = def_filling;
         this.supported_figures = supported_figures;
+
+        this.temp_ctx = temp_canvas.getContext('2d');
+        this.real_ctx = canvas.getContext('2d');
     }
 
     set_filling(is_filled){
@@ -27,6 +30,8 @@ class Drawer {
     save() {
         this.current_figure = null;
         // TODO!
+        this.real_ctx.drawImage(this.temp_canvas, 0, 0);
+        this.temp_ctx.clearRect(0, 0, this.temp_canvas.width, this.temp_canvas.height);
     }
 
      create(mouseX, mouseY) {
