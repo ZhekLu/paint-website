@@ -1,11 +1,12 @@
 class Drawer {
-    constructor(canvas, temp_canvas, def_tool, def_filling, supported_figures={}) {
+    constructor(canvas, temp_canvas, storage, def_tool, def_filling, supported_figures={}) {
         this.tool = def_tool;
         this.current_figure = null;
         this.temp_canvas = temp_canvas;
         this.main_canvas = canvas;
         this.figure_fill = def_filling;
         this.supported_figures = supported_figures;
+        this.storage = storage;
 
         this.temp_ctx = temp_canvas.getContext('2d');
         this.real_ctx = canvas.getContext('2d');
@@ -28,8 +29,11 @@ class Drawer {
     }
 
     save() {
+        let figure_json = this.current_figure.get_json();
         this.current_figure = null;
-        // TODO!
+
+        this.storage.add_figure(figure_json);
+
         this.real_ctx.drawImage(this.temp_canvas, 0, 0);
         this.temp_ctx.clearRect(0, 0, this.temp_canvas.width, this.temp_canvas.height);
     }

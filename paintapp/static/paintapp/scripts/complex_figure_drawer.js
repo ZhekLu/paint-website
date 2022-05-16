@@ -1,6 +1,6 @@
 class ComplexFigureDrawer extends Drawer{
-    constructor(canvas, temp_canvas, def_filling = false, def_tool = 'polygon') {
-        super(canvas, temp_canvas, def_tool, def_filling,
+    constructor(canvas, temp_canvas, storage, def_filling = false, def_tool = 'polygon') {
+        super(canvas, temp_canvas, storage, def_tool, def_filling,
             {
                 'polygon':Polygon,
                 'polygonal_chain':PolygonalChain

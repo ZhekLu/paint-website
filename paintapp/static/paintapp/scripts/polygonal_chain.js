@@ -32,4 +32,12 @@ class PolygonalChain extends Figure{
         this.currentY = y;
         this.draw();
     }
+
+    get_json() {
+        let res = super.get_json();
+        res['type'] = 'PolygonalChain';
+        res['endX'] = this.endX;
+        res['endY'] = this.endY;
+        return res;
+    }
 }

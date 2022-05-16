@@ -20,4 +20,12 @@ class Rectangle extends Figure{
         this.height = new_y - this.startY;
         this.draw();
     }
+
+    get_json() {
+        let res = super.get_json();
+        res['type'] = 'Rectangle';
+        res['height'] = this.height;
+        res['width'] = this.width;
+        return res;
+    }
 }

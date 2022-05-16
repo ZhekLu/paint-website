@@ -26,4 +26,12 @@ class Ellipse extends Figure{
         this.radY = (y - this.startY) / 2;
         this.draw();
     }
+
+    get_json() {
+        let res = super.get_json();
+        res['type'] = 'Ellipse';
+        res['radX'] = this.radX;
+        res['radY'] = this.radY;
+        return res;
+    }
 }

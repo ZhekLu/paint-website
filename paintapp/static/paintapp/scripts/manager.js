@@ -1,8 +1,10 @@
 class Manager {
-    constructor(canvas, temp_canvas,
+    constructor(canvas, temp_canvas, start_picture = [],
                 def_tool = 'line', def_filling = false, def_line_width = 2) {
-        this.simple_drawer = new SimpleFigureDrawer(canvas, temp_canvas);
-        this.complex_drawer = new ComplexFigureDrawer(canvas, temp_canvas);
+        this.current_picture = new FigureManager(start_picture);
+
+        this.simple_drawer = new SimpleFigureDrawer(canvas, temp_canvas, this.current_picture);
+        this.complex_drawer = new ComplexFigureDrawer(canvas, temp_canvas, this.current_picture);
         this.current_drawer = null;
 
         this.ctx = temp_canvas.getContext('2d');
@@ -41,10 +43,14 @@ class Manager {
     reset() {
         this.ctx.clearRect(0, 0, this.temp_canvas.width, this.temp_canvas.height);
         this.res_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.current_picture.clear();
     }
 
     handleEvent(event) {
         this.current_drawer.handleEvent(event);
     }
 
+    get_storage() {
+        return this.current_picture.get_storage();
+    }
 }

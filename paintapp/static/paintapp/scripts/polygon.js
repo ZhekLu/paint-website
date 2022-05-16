@@ -32,4 +32,12 @@ class Polygon extends Figure{
         this.currentY = y;
         this.draw();
     }
+
+    get_json() {
+        let res = super.get_json();
+        res['type']='Polygon';
+        res['endX'] = this.endX;
+        res['endY'] = this.endY;
+        return res;
+    }
 }
