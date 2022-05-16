@@ -70,15 +70,15 @@ class Figure {
             width = context.lineWidth,
             original_ctx = this.ctx;
 
-        context.fill_color = this.fill_color;
-        context.stroke_color = this.stroke_color;
+        context.fillStyle = this.fill_color;
+        context.strokeStyle = this.stroke_color;
         context.lineWidth = this.width;
         this.ctx = context;
 
         this.draw();
 
-        context.fill_color = fill;
-        context.stroke_color = stroke;
+        context.fillStyle = fill;
+        context.strokeStyle = stroke;
         context.lineWidth = width;
         this.ctx = original_ctx;
     }
