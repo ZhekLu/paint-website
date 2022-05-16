@@ -1,7 +1,7 @@
 class Manager {
-    constructor(canvas, temp_canvas, start_picture = [],
+    constructor(canvas, temp_canvas, view_presenter, start_picture = [],
                 def_tool = 'line', def_filling = false, def_line_width = 2) {
-        this.current_picture = new FigureManager(start_picture);
+        this.current_picture = new FigureManager(view_presenter, start_picture);
 
         this.simple_drawer = new SimpleFigureDrawer(canvas, temp_canvas, this.current_picture);
         this.complex_drawer = new ComplexFigureDrawer(canvas, temp_canvas, this.current_picture);
@@ -52,5 +52,9 @@ class Manager {
 
     get_storage() {
         return this.current_picture.get_storage();
+    }
+
+    figure_state_changed(id) {
+        this.current_picture.figure_state_changed(id);
     }
 }

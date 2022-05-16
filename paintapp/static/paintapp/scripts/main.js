@@ -1,8 +1,11 @@
+// import signal from 'signal-js'
+
 const canvas = document.getElementById('canvas');
 const temp_canvas = document.getElementById('pre_canvas')
+let figures = document.getElementById('figure_list');
 
 
-let manager = new Manager(canvas, temp_canvas);
+let manager = new Manager(canvas, temp_canvas, figures);
 temp_canvas.addEventListener('mousedown', manager);
 temp_canvas.addEventListener('mouseup', manager);
 temp_canvas.addEventListener('mousemove', manager);
@@ -48,3 +51,21 @@ function reset (){
     manager.reset();
 }
 
+function figure_state_changed(id) {
+    manager.figure_state_changed(id);
+}
+
+// function  update_figures() {
+//     let list = manager.get_storage();
+//     figures.innerHTML = "";
+//     for (let i = 0; i < list.length; i++) {
+//         let item = document.createElement('button');
+//         item.textContent = 'OFOF';
+//         figures.append(item);
+//     }
+// }
+
+
+// document.addEventListener('mouseup', update_figures);
+// document.addEventListener('mousedown', update_figures);
+// signal.on('figure_list_changed', update_figures);
