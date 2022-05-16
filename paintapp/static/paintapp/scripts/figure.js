@@ -1,5 +1,6 @@
 class Figure {
-    constructor(canvas, x, y, filled) {
+    constructor(canvas, x, y, filled, type = 'Figure') {
+        this.type = type;
         this.fill = filled;
         this.startX = x;
         this.startY = y;

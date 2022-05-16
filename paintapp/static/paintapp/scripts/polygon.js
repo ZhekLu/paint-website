@@ -1,6 +1,6 @@
 class Polygon extends Figure{
     constructor(canvas, x, y, endX = [], endY = []) {
-        super(canvas, x, y, true);
+        super(canvas, x, y, true, 'Polygon');
         this.currentX = null;
         this.currentY = null;
 

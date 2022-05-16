@@ -1,6 +1,6 @@
 class PolygonalChain extends Figure{
     constructor(canvas, x, y, endX = [], endY = []) {
-        super(canvas, x, y, null);
+        super(canvas, x, y, null, 'PolygonalChain');
         this.currentX = null;
         this.currentY = null;
 

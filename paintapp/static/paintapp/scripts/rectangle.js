@@ -1,6 +1,6 @@
 class Rectangle extends Figure{
     constructor(canvas, x, y, filled = false, height=0, width=0) {
-        super(canvas, x, y, filled);
+        super(canvas, x, y, filled, 'Rectangle');
         this.lenY = height;
         this.lenX = width;
     }

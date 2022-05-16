@@ -1,6 +1,6 @@
 class Ellipse extends Figure{
     constructor(canvas, x, y, filled = false, radiusX=0, radiusY=0) {
-        super(canvas, x, y, filled);
+        super(canvas, x, y, filled, 'Ellipse');
         this.radX = radiusX;
         this.radY = radiusY;
     }
