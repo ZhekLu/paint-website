@@ -56,5 +56,14 @@ class Manager {
 
     figure_state_changed(id) {
         this.current_picture.figure_state_changed(id);
+        this.redraw_all_figures();
+    }
+
+    redraw_all_figures() {
+        this.res_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        let figures = this.current_picture.get_storage();
+        for (let i = 0; i < figures; i++) {
+
+        }
     }
 }

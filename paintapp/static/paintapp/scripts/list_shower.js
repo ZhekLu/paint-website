@@ -19,7 +19,7 @@ class FigureListShower {
 
             let figure_label = document.createElement('label');
             figure_label.className = this.item_type;
-            figure_label.textContent = current_figure.json.type;
+            figure_label.textContent = current_figure.object.type;
 
 
             let item = document.createElement('button');

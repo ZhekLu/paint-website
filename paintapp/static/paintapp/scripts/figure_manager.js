@@ -9,9 +9,9 @@ class FigureManager {
         this.view = new FigureListShower(view_presenter, 'figure_item', this.storage, this);
     }
 
-    add_figure(figure_json) {
+    add_figure(figure) {
         let item = {
-            'json':figure_json,
+            'object':figure,
             'id': this.id_generator,
             'deleted':false
         }

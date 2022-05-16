@@ -15,6 +15,19 @@ class Figure {
             this.fill = fill_value;
     }
 
+    set_fill_color(color) {
+        this.fill_color = color;
+    }
+
+    set_stroke_color(color) {
+        this.stroke_color = color;
+    }
+
+    set_colors(stroke, fill) {
+        this.set_stroke_color(stroke);
+        this.set_fill_color(fill);
+    }
+
     draw() {
         throw 'Abstract method';
     }
@@ -35,11 +48,15 @@ class Figure {
         let figure = {
             "type":'Figure',
             "startX":this.startX,
-            "startY":this.startY
+            "startY":this.startY,
+            "stroke_color":this.stroke_color
         };
-        if (this.is_fillable())
+        if (this.is_fillable()) {
             figure["fill"] = this.fill;
+            figure['fill_color'] = this.fill_color;
+        }
         return figure;
     }
 
+    restore() {}
 }

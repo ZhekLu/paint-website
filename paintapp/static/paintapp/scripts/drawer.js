@@ -29,10 +29,13 @@ class Drawer {
     }
 
     save() {
-        let figure_json = this.current_figure.get_json();
-        this.current_figure = null;
+        this.current_figure.set_colors(this.temp_ctx.stroke_color, this.temp_ctx.fill_color);
 
-        this.storage.add_figure(figure_json);
+        // let figure_json = this.current_figure.get_json();
+        // this.storage.add_figure(figure_json);
+        this.storage.add_figure(this.current_figure);
+
+        this.current_figure = null;
 
         this.real_ctx.drawImage(this.temp_canvas, 0, 0);
         this.temp_ctx.clearRect(0, 0, this.temp_canvas.width, this.temp_canvas.height);
