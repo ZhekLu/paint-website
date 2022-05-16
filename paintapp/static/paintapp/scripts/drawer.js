@@ -29,7 +29,7 @@ class Drawer {
     }
 
     save() {
-        this.current_figure.set_colors(this.temp_ctx.stroke_color, this.temp_ctx.fill_color);
+        this.current_figure.set_params(this.temp_ctx.stroke_color, this.temp_ctx.fill_color, this.temp_ctx.lineWidth);
 
         // let figure_json = this.current_figure.get_json();
         // this.storage.add_figure(figure_json);

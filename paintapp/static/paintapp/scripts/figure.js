@@ -23,9 +23,14 @@ class Figure {
         this.stroke_color = color;
     }
 
-    set_colors(stroke, fill) {
+    set_width(value) {
+        this.width = value;
+    }
+
+    set_params(stroke, fill, width) {
         this.set_stroke_color(stroke);
         this.set_fill_color(fill);
+        this.set_width(width);
     }
 
     draw() {
@@ -49,6 +54,7 @@ class Figure {
             "type":'Figure',
             "startX":this.startX,
             "startY":this.startY,
+            "width":this.width,
             "stroke_color":this.stroke_color
         };
         if (this.is_fillable()) {
@@ -58,5 +64,22 @@ class Figure {
         return figure;
     }
 
-    restore() {}
+    restore(context) {
+        let fill = context.fill_color,
+            stroke = context.stroke_color,
+            width = context.lineWidth,
+            original_ctx = this.ctx;
+
+        context.fill_color = this.fill_color;
+        context.stroke_color = this.stroke_color;
+        context.lineWidth = this.width;
+        this.ctx = context;
+
+        this.draw();
+
+        context.fill_color = fill;
+        context.stroke_color = stroke;
+        context.lineWidth = width;
+        this.ctx = original_ctx;
+    }
 }

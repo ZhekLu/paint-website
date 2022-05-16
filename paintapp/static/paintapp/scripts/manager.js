@@ -62,8 +62,10 @@ class Manager {
     redraw_all_figures() {
         this.res_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         let figures = this.current_picture.get_storage();
-        for (let i = 0; i < figures; i++) {
-
+        for (let i = 0; i < figures.length; i++) {
+            let curr = figures[i];
+            if (!curr.deleted)
+                curr.object.restore(this.res_ctx);
         }
     }
 }
