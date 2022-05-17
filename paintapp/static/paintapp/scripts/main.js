@@ -69,3 +69,11 @@ function figure_state_changed(id) {
 // document.addEventListener('mouseup', update_figures);
 // document.addEventListener('mousedown', update_figures);
 // signal.on('figure_list_changed', update_figures);
+
+
+// plugin loading
+// plug = document.createElement('script');
+// plug.src = "{% static 'paintapp/scripts/plugin_trapezoid.js' %}"
+// document.body.append(plug);
+// let blob = new Blob(["It's ok."], {type: 'text/plain;charset=utf-8'});
+// saveAs()
