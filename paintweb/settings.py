@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'paintapp.apps.PaintappConfig',
     'bootstrap4',
+    'paintsite.apps.PaintsiteConfig',
 ]
 
 MIDDLEWARE = [
