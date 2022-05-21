@@ -55,6 +55,21 @@ function figure_state_changed(id) {
     manager.figure_state_changed(id);
 }
 
+function save_picture() {
+    let picture = manager.get_picture();
+    download_json(picture, 'picture_paint_web');
+}
+
+function download_json(obj, name) {
+    let data_str = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+    let download_node = document.createElement('a');
+    download_node.setAttribute("href", data_str);
+    download_node.setAttribute("download", name + ".json");
+    document.body.appendChild(download_node);
+    download_node.click();
+    download_node.remove();
+}
+
 // function  update_figures() {
 //     let list = manager.get_storage();
 //     figures.innerHTML = "";

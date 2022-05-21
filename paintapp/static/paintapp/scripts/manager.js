@@ -68,4 +68,15 @@ class Manager {
                 curr.object.restore(this.res_ctx);
         }
     }
+
+    get_picture() {
+        let figures = this.current_picture.get_storage();
+        let file_picture = [];
+        for (let i = 0; i < figures.length; i++) {
+            let curr = figures[i];
+            if (!curr.deleted)
+                file_picture.push(curr.object.get_json());
+        }
+        return file_picture;
+    }
 }
