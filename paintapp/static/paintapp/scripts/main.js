@@ -1,5 +1,3 @@
-// import signal from 'signal-js'
-
 const canvas = document.getElementById('canvas');
 const temp_canvas = document.getElementById('pre_canvas')
 let figures = document.getElementById('figure_list');
@@ -88,44 +86,38 @@ function load_picture() {
     };
 }
 
-// function  update_figures() {
-//     let list = manager.get_storage();
-//     figures.innerHTML = "";
-//     for (let i = 0; i < list.length; i++) {
-//         let item = document.createElement('button');
-//         item.textContent = 'OFOF';
-//         figures.append(item);
-//     }
-// }
-
-
-// document.addEventListener('mouseup', update_figures);
-// document.addEventListener('mousedown', update_figures);
-// signal.on('figure_list_changed', update_figures);
-
 
 // plugin loading
-let plug = document.createElement('script');
-// plug.src = "{% static 'paintapp/scripts/plugin_trapezoid.js' %}"
-plug.src = 'static/paintapp/plugins/plugin_trapezoid.js';
-document.body.appendChild(plug);
+function load_plugin(src, plugin_name, but_name = 'PL') {
+    let plug = document.createElement('script');
+    plug.src = src;
+    document.body.appendChild(plug);
 
-plug.addEventListener("load", () => {
-    console.log("Plugin loaded");
-    manager.add_plugin('TrapezoidPlugin');
-    add_plugin_butt('TrapezoidPlugin', 'TR');
-});
+    plug.addEventListener("load", () => {
+        console.log("Plugin" + plugin_name + " loaded");
+        manager.add_plugin(plugin_name);
+        add_plugin_butt(plugin_name, but_name);
+    });
 
-plug.addEventListener("error", (ev) => {
-    console.log("Error on loading plugin", ev);
-});
+    plug.addEventListener("error", (ev) => {
+        console.log("Error on loading plugin ", plugin_name, ev);
+    });
 
-
-function add_plugin_butt(plugin_name, but_name) {
-    let div = document.getElementById('toolbox');
-    let butt = document.createElement('button');
-    butt.textContent = but_name;
-    butt.className = 'button';
-    butt.onclick = () => manager.set_tool(plugin_name);
-    div.append(butt);
+    function add_plugin_butt(plugin_name, but_name) {
+        let div = document.getElementById('toolbox');
+        let butt = document.createElement('button');
+        butt.textContent = but_name;
+        butt.className = 'button';
+        butt.onclick = () => manager.set_tool(plugin_name);
+        div.append(butt);
+    }
 }
+
+load_plugin('static/paintapp/plugins/plugin_trapezoid.js', 'TrapezoidPlugin', 'TR');
+
+// function test_load_plugin() {
+//     let file = loader.files[0];
+//     if(!file)
+//         return;
+//     load_plugin(file, 'TrapezoidPlugin', 'TEST');
+// }

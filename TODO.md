@@ -15,7 +15,7 @@ _______________
 - [x] Drawn shapes list
 _____
 - [x] Serialize/Deserialize
-- [ ] Plugins 
+- [x] Plugins 
 
 ___________________________
 
