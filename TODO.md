@@ -11,10 +11,10 @@ _______________
 - [x] Choosing drawing settings:
   - [x] fill color
   - [x] line width/color
-- [ ] Undo of last drawing
-- [ ] Drawn shapes list
+- [x] Undo of last drawing
+- [x] Drawn shapes list
 _____
-- [ ] Serialize/Deserialize
+- [x] Serialize/Deserialize
 - [ ] Plugins 
 
 ___________________________

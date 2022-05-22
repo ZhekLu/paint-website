@@ -70,6 +70,24 @@ function download_json(obj, name) {
     download_node.remove();
 }
 
+let loader = document.getElementById("file_selector");
+function load_picture() {
+    let file = loader.files[0];
+    if(!file)
+        return;
+    let reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function() {
+        console.log(reader.result)
+        let picture = JSON.parse(reader.result);
+        manager.load_picture(picture);
+    };
+
+    reader.onerror = function() {
+        console.log(reader.error);
+    };
+}
+
 // function  update_figures() {
 //     let list = manager.get_storage();
 //     figures.innerHTML = "";

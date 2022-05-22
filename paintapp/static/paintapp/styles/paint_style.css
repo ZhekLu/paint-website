@@ -139,6 +139,15 @@
 	bottom: 0;
 	background-color: rgba(110, 110, 110, .5);
 	width: 100%;
+	text-align: right;
+}
+
+#file_selector {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	/*background-color: rgba(110, 110, 110, .5);*/
+	width: 100%;
 }
 
 #fill #outline{

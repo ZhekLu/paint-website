@@ -24,8 +24,14 @@ class Rectangle extends Figure{
     get_json() {
         let res = super.get_json();
         res['type'] = 'Rectangle';
-        res['height'] = this.lenY;
-        res['width'] = this.lenX;
+        res['lenY'] = this.lenY;
+        res['lenX'] = this.lenX;
         return res;
+    }
+
+    load_params_from_json(params) {
+        super.load_params_from_json(params);
+        this.lenX = params.lenX;
+        this.lenY = params.lenY;
     }
 }

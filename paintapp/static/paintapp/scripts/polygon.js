@@ -14,7 +14,8 @@ class Polygon extends Figure{
         for(let i = 0; i < this.endX.length; i++) {
             this.ctx.lineTo(this.endX[i], this.endY[i]);
         }
-        this.ctx.lineTo(this.currentX, this.currentY);
+        if(this.currentY && this.currentX)
+            this.ctx.lineTo(this.currentX, this.currentY);
         this.ctx.fill();
         this.ctx.closePath();
     }
@@ -39,5 +40,11 @@ class Polygon extends Figure{
         res['endX'] = this.endX;
         res['endY'] = this.endY;
         return res;
+    }
+
+    load_params_from_json(params) {
+        super.load_params_from_json(params);
+        this.endX = params.endX;
+        this.endY = params.endY;
     }
 }

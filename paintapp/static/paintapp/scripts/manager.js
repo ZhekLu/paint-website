@@ -79,4 +79,15 @@ class Manager {
         }
         return file_picture;
     }
+
+    load_picture(picture) {
+        this.reset();
+        for(let i = 0; i < picture.length; i++) {
+            let figure_json = picture[i];
+            let figure = eval(String('new ' + figure_json.type + '(this.canvas)'));
+            figure.load_params_from_json(picture[i]);
+            this.current_picture.add_figure(figure);
+        }
+        this.redraw_all_figures();
+    }
 }

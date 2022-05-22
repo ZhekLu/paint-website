@@ -36,9 +36,12 @@
                min="1" max="1000" value="2" placeholder="line width">
         <span class="validity"></span>
         <button class="button" onclick="save_picture()">SAVE</button>
+        <button class="button" onclick="load_picture()">LOAD</button>
     </div>
 
+
     <div id="coords">x:y</div>
+    <input type="file" id="file_selector"/>
 
 	<canvas  id="canvas" width="1300" height="600" style=" background-color: #ffffff; z-index: 0"></canvas>
 	<canvas  id="pre_canvas" width="1300" height="600" style="z-index: 1"></canvas>

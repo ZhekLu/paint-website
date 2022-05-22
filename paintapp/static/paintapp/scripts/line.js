@@ -27,4 +27,10 @@ class Line extends Figure{
         res['endY'] = this.endY;
         return res;
     }
+
+    load_params_from_json(params) {
+        super.load_params_from_json(params);
+        this.endX = params.endX;
+        this.endY = params.endY;
+    }
 }

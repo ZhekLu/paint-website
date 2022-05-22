@@ -83,4 +83,13 @@ class Figure {
         context.lineWidth = width;
         this.ctx = original_ctx;
     }
+
+    load_params_from_json(params) {
+        this.startX = params.startX;
+        this.startY = params.startY;
+        this.width = params.width;
+        this.stroke_color = params.stroke_color;
+        this.fill = params.fill;
+        this.fill_color = params.fill_color;
+    }
 }

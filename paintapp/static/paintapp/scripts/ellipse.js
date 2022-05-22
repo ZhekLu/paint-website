@@ -34,4 +34,10 @@ class Ellipse extends Figure{
         res['radY'] = this.radY;
         return res;
     }
+
+    load_params_from_json(params) {
+        super.load_params_from_json(params);
+        this.radX = params.radX;
+        this.radY = params.radY;
+    }
 }
