@@ -105,8 +105,27 @@ function load_picture() {
 
 
 // plugin loading
-// plug = document.createElement('script');
+let plug = document.createElement('script');
 // plug.src = "{% static 'paintapp/scripts/plugin_trapezoid.js' %}"
-// document.body.append(plug);
-// let blob = new Blob(["It's ok."], {type: 'text/plain;charset=utf-8'});
-// saveAs()
+plug.src = 'static/paintapp/plugins/plugin_trapezoid.js';
+document.body.appendChild(plug);
+
+plug.addEventListener("load", () => {
+    console.log("Plugin loaded");
+    manager.add_plugin('TrapezoidPlugin');
+    add_plugin_butt('TrapezoidPlugin', 'TR');
+});
+
+plug.addEventListener("error", (ev) => {
+    console.log("Error on loading plugin", ev);
+});
+
+
+function add_plugin_butt(plugin_name, but_name) {
+    let div = document.getElementById('toolbox');
+    let butt = document.createElement('button');
+    butt.textContent = but_name;
+    butt.className = 'button';
+    butt.onclick = () => manager.set_tool(plugin_name);
+    div.append(butt);
+}

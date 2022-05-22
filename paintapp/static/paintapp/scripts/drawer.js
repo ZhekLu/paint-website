@@ -57,4 +57,8 @@ class Drawer {
         let y = mouseY - this.temp_canvas.offsetTop;
         this.current_figure.redraw(x, y);
     }
+
+    add_plugin(plugin_class_name) {
+        this.supported_figures[plugin_class_name] = eval(plugin_class_name);
+    }
 }

@@ -67,13 +67,14 @@ class TrapezoidPlugin{
 
     draw() {
         this.ctx.beginPath();
-        this.ctx.moveTo(this.startX, this.startY - this.endY);
 
-        let right_top_X = Math.abs(this.startX - this.endX) / 3;
+        let indent = (this.endX - this.startX) / 3;
+        this.ctx.moveTo(this.startX + indent, this.startY);
 
-        this.ctx.lineTo(right_top_X, this.startY);
-        this.ctx.lineTo(2 * right_top_X, this.startY);
+        this.ctx.lineTo(this.endX - indent, this.startY);
         this.ctx.lineTo(this.endX, this.endY);
+        this.ctx.lineTo(this.startX, this.endY);
+        this.ctx.lineTo(this.startX + indent, this.startY);
 
         this.ctx.stroke();
         if(this.fill) {

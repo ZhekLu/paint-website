@@ -90,4 +90,12 @@ class Manager {
         }
         this.redraw_all_figures();
     }
+
+    add_plugin(plugin, is_simple = true) {
+        if(is_simple)
+            this.simple_drawer.add_plugin(plugin);
+        else
+            this.complex_drawer.add_plugin(plugin);
+    }
+
 }
