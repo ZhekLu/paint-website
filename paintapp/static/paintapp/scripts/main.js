@@ -78,7 +78,11 @@ function load_picture() {
     reader.onload = function() {
         console.log(reader.result)
         let picture = JSON.parse(reader.result);
-        manager.load_picture(picture);
+        try {
+            manager.load_picture(picture);
+        } catch (e) {
+            alert('Error while loading picture :' + e.message);
+        }
     };
 
     reader.onerror = function() {
@@ -113,11 +117,4 @@ function load_plugin(src, plugin_name, but_name = 'PL') {
     }
 }
 
-load_plugin('static/paintapp/plugins/plugin_trapezoid.js', 'TrapezoidPlugin', 'TR');
-
-// function test_load_plugin() {
-//     let file = loader.files[0];
-//     if(!file)
-//         return;
-//     load_plugin(file, 'TrapezoidPlugin', 'TEST');
-// }
+// load_plugin('static/paintapp/plugins/plugin_trapezoid.js', 'TrapezoidPlugin', 'TR');
