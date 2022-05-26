@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.signing import BadSignature
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import TemplateDoesNotExist
@@ -11,6 +12,7 @@ from django.views.generic import UpdateView, CreateView, TemplateView
 
 from paintsite.forms import ChangeUserInfoForm, RegisterUserForm
 from paintsite.models import User
+from paintsite.utilities import signer
 
 
 def index(request):
@@ -38,6 +40,9 @@ class PSLogoutView(LoginRequiredMixin, LogoutView):
     template_name = 'paintsite/logout.html'
 
 
+# Change Views
+
+
 class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = User
     template_name = 'paintsite/change_user_info.html'
@@ -61,6 +66,9 @@ class PSPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChan
     success_message = 'Password was changed.'
 
 
+# Registration
+
+
 class RegisterUserView(CreateView):
     model = User
     template_name = 'paintsite/register_user.html'
@@ -71,3 +79,21 @@ class RegisterUserView(CreateView):
 class RegisterDoneView(TemplateView):
     template_name = 'paintsite/register_done.html'
 
+
+# Activation
+
+def user_activate(request, sign):
+    try:
+        username = signer.unsign(sign)
+    except BadSignature:
+        return render(request, 'paintsite/bad_signature.html')
+
+    user = get_object_or_404(User, username=username)
+    if user.is_activated:
+        template = 'paintsite/user_is_activated.html'
+    else:
+        template = 'paintsite/activation_done.html'
+        user.is_active = True
+        user.is_activated = True
+        user.save()
+    return render(request, template)
