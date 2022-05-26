@@ -7,9 +7,9 @@ from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, CreateView, TemplateView
 
-from paintsite.forms import ChangeUserInfoForm
+from paintsite.forms import ChangeUserInfoForm, RegisterUserForm
 from paintsite.models import User
 
 
@@ -59,3 +59,15 @@ class PSPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChan
     template_name = 'paintsite/password_change.html'
     success_url = reverse_lazy('paintsite:profile')
     success_message = 'Password was changed.'
+
+
+class RegisterUserView(CreateView):
+    model = User
+    template_name = 'paintsite/register_user.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('paintsite:register_done')
+
+
+class RegisterDoneView(TemplateView):
+    template_name = 'paintsite/register_done.html'
+
