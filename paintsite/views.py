@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
@@ -53,3 +53,9 @@ class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         if not queryset:
             queryset = self.get_queryset()
         return get_object_or_404(queryset, pk=self.user_id)
+
+
+class PSPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
+    template_name = 'paintsite/password_change.html'
+    success_url = reverse_lazy('paintsite:profile')
+    success_message = 'Password was changed.'
