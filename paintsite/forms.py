@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from .models import User
 from .apps import user_registered
 
+
 class ChangeUserInfoForm(forms.ModelForm):
     email = forms.EmailField(required=True, label='Email address')
 

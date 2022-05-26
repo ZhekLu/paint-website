@@ -32,7 +32,7 @@
                     <div class="dropdown-devider"></div>
                     <a class="dropdown-item" href="{% url 'paintsite:logout' %}">Quit</a>
                     <div class="dropdown-devider"></div>
-                    <a class="dropdown-item" href="#">Delete</a>
+                    <a class="dropdown-item" href="{% url 'paintsite:profile_delete' %}">Delete</a>
                 </div>
             </li>
             {% else %}
