@@ -2,7 +2,7 @@ from django.contrib import admin
 import datetime
 
 from .forms import SubTagForm
-from .models import User, SubTag, SuperTag
+from .models import User, SubTag, SuperTag, PictureBoard
 from .utilities import send_activation_notification
 
 
@@ -75,3 +75,16 @@ class SubTagAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SubTag, SubTagAdmin)
+
+
+class PictureBoardAdmin(admin.ModelAdmin):
+    list_display = ('tag', 'title', 'description', 'author', 'created_at')
+    fields = (
+        ('tag', 'author'),
+        'title', 'description',
+        'image',
+        'is_public'
+    )
+
+
+admin.site.register(PictureBoard, PictureBoardAdmin)

@@ -69,7 +69,7 @@ class SubTag(Tag):
 class PictureBoard(models.Model):
     tag = models.ForeignKey(SubTag, on_delete=models.PROTECT, verbose_name='Tag')
     title = models.CharField(max_length=40, verbose_name='Picture name')
-    description = models.TextField(verbose_name='Description')
+    description = models.TextField(blank=True, verbose_name='Description')
     image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Picture')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Picture author')
     is_public = models.BooleanField(default=True, db_index=True, verbose_name='Show in gallery?')
