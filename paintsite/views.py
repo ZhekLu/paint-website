@@ -3,7 +3,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
 from django.core.signing import BadSignature
+from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import TemplateDoesNotExist
@@ -12,8 +14,8 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
-from paintsite.forms import ChangeUserInfoForm, RegisterUserForm
-from paintsite.models import User
+from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm
+from paintsite.models import User, SubTag, PictureBoard
 from paintsite.utilities import signer
 
 
@@ -122,7 +124,27 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 
 def by_tag(request, pk):
-    pass
+    tag = get_object_or_404(SubTag, pk=pk)
+    pps = PictureBoard.objects.filter(is_public=True, tag=pk)
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        q = Q(title__icontains=keyword) | Q(description__icontains=keyword)
+        pps = pps.filter(q)
+    else:
+        keyword = ''
+
+    form = SearchForm(initial={'keyword': keyword})
+    paginator = Paginator(pps, 2)
+    if 'page' in request.GET:
+        page_num = request.GET['page']
+    else:
+        page_num = 1
+    page = paginator.get_page(page_num)
+    context = {'tag': tag, 'page': page, 'pps': page.object_list, 'form': form}
+    return render(request, 'paintsite/by_tag.html', context)
 
 
-
+def detail(request, tag_pk, pk):
+    pp = get_object_or_404(PictureBoard, pk=pk)
+    context = {'pp': pp}
+    return render(request, 'paintsite/detail.html', context)
