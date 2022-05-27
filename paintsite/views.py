@@ -20,7 +20,9 @@ from paintsite.utilities import signer
 
 
 def index(request):
-    return render(request, 'paintsite/index.html')
+    pps = PictureBoard.objects.filter(is_public=True)[:10]
+    context = {'pps': pps}
+    return render(request, 'paintsite/index.html', context)
 
 
 def other_page(request, page):

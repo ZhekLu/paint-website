@@ -1,5 +1,32 @@
 {% extends 'layout/basic.html' %}
 
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}Last pictures{% endblock %}
+
 {% block content %}
-    last pictures.
+    {% if pps %}
+        <h2 class="mb-2">Last 10 pictures</h2>
+        <ul class="list-unstyled">
+            {% for pp in pps %}
+            <li class="media my-5 p-3 border">
+                {% url 'paintsite:detail' tag_pk=pp.tag.pk pk=pp.pk as url %}
+                <a href="{{ url }}{{ all }}">
+                    <img class="mr-3" src="{% thumbnail pp.image 'default' %}">
+                </a>
+                <div class="media-body">
+                    <h3><a href="{{ url }}{{ all }}">
+                        {{ pp.title }}
+                    </a></h3>
+                    <div>{{ pp.description }}</div>
+                    <p class="text-right font-italic">{{ pp.created_at }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2 class="mb-2">You don't have your pictures yet</h2>
+    {% endif %}
 {% endblock %}
