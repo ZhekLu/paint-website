@@ -1,0 +1,4 @@
+Django~=4.0.4
+django-bootstrap4
+easy-thumbnails
+django-cleanup

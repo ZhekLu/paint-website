@@ -1,13 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from paintsite.utilities import get_timestamp_path
+
 
 class User(AbstractUser):
     is_activated = models.BooleanField(default=True, db_index=True, verbose_name='Was activated?')
     send_messages = models.BooleanField(default=True, verbose_name='Want to get messages about new comments?')
 
+    def delete(self, *args, **kwargs):
+        for post in self.post_set.all():
+            post.delete()
+        super().delete(*args, **kwargs)
+
     class Meta(AbstractUser.Meta):
         pass
+
+
+# Tag models
 
 
 class Tag(models.Model):
@@ -51,3 +61,21 @@ class SubTag(Tag):
         ordering = ('super_tag__order', 'super_tag__name', 'order', 'name')
         verbose_name = 'Sub tag'
         verbose_name_plural = 'Sub tags'
+
+
+# Gallery Board
+
+
+class PictureBoard(models.Model):
+    tag = models.ForeignKey(SubTag, on_delete=models.PROTECT, verbose_name='Tag')
+    title = models.CharField(max_length=40, verbose_name='Picture name')
+    description = models.TextField(verbose_name='Description')
+    image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Picture')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Picture author')
+    is_public = models.BooleanField(default=True, db_index=True, verbose_name='Show in gallery?')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Published')
+
+    class Meta:
+        verbose_name = 'Picture'
+        verbose_name_plural = 'Pictures'
+        ordering = ['-created_at']
