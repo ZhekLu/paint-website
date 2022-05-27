@@ -42,13 +42,19 @@
     </div>
     <div class="row">
         <nav class="col-md-auto nav flex-column border">
-            <a class="nav-link root" href="">Main</a>
-            <span class="nav-link root font-weight-bold">Nature</span>
-            <a class="nav-link" href="#">Portraits</a>
-            <a class="nav-link" href="#">Architecture</a>
-            <span class="nav-link root font-weight-bold" href="#">Abstraction</span>
-            <a class="nav-link" href="#">Car</a>
-            <a class="nav-link" href="#">Truck</a>
+            <a class="nav-link root" href="{% url 'paintsite:index' %}">Main</a>
+
+            {% for tag in tags %}
+            {% ifchanged tag.super_tag.pk %}
+            <span class="nav-link root font-weight-bold">
+                {{ tag.super_tag.name }}
+            </span>
+            {% endifchanged %}
+            <a class="nav-link" href="{% url 'paintsite:by_tag' pk=tag.pk %}">
+                {{ tag.name }}
+            </a>
+            {% endfor %}
+
             <a class="nav-link root" href="#">About Site</a>
         </nav>
         <section class="col border py-2">

@@ -1,7 +1,8 @@
 from django.contrib import admin
 import datetime
 
-from .models import User
+from .forms import SubTagForm
+from .models import User, SubTag, SuperTag
 from .utilities import send_activation_notification
 
 
@@ -55,3 +56,22 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User, UserAdmin)
+
+
+class SubTagInline(admin.TabularInline):
+    model = SubTag
+
+
+class SuperTagAdmin(admin.ModelAdmin):
+    exclude = ('super_tag', )
+    inlines = (SubTagInline, )
+
+
+admin.site.register(SuperTag, SuperTagAdmin)
+
+
+class SubTagAdmin(admin.ModelAdmin):
+    form = SubTagForm
+
+
+admin.site.register(SubTag, SubTagAdmin)

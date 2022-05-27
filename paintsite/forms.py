@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
-from .models import User
+from .models import User, SuperTag, SubTag
 from .apps import user_registered
 
 
@@ -51,3 +51,16 @@ class RegisterUserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password', 'password_confirm',
                   'first_name', 'last_name', 'send_messages')
+
+
+class SubTagForm(forms.ModelForm):
+    super_rubric = forms.ModelChoiceField(
+        queryset=SuperTag.objects.all(),
+        empty_label=None,
+        label='Parent tag',
+        required=True
+    )
+
+    class Meta:
+        model = SubTag
+        fields = '__all__'
