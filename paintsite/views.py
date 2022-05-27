@@ -35,7 +35,8 @@ def other_page(request, page):
 
 @login_required
 def profile(request):
-    return render(request, 'paintsite/profile.html')
+    context = {'pps': PictureBoard.objects.filter(author=request.user.pk)}
+    return render(request, 'paintsite/profile.html', context)
 
 
 class PSLoginView(LoginView):
@@ -150,3 +151,10 @@ def detail(request, tag_pk, pk):
     pp = get_object_or_404(PictureBoard, pk=pk)
     context = {'pp': pp}
     return render(request, 'paintsite/detail.html', context)
+
+
+@login_required
+def profile_pp_detail(request, pk):
+    pp = get_object_or_404(PictureBoard, pk=pk)
+    context = {'pp': pp}
+    return render(request, 'paintsite/profile_detail.html', context)
