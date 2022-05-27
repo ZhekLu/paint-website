@@ -1,8 +1,9 @@
+from captcha.fields import CaptchaField
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
-from .models import User, SuperTag, SubTag, PictureBoard
+from .models import User, SuperTag, SubTag, PictureBoard, Comment
 from .apps import user_registered
 
 
@@ -76,3 +77,21 @@ class PictureForm(forms.ModelForm):
         fields = '__all__'
         widgets = {'author': forms.HiddenInput}
 
+
+# Comments
+
+class UserCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('is_active', )
+        widgets = {'author': forms.HiddenInput, 'pp': forms.HiddenInput}
+
+
+class GuestCommentForm(forms.ModelForm):
+    captcha = CaptchaField(label='Enter text from the image',
+                           error_messages={'invalid': 'Wrong input'})
+
+    class Meta:
+        model = Comment
+        exclude = ('is_active',)
+        widgets = {'pp': forms.HiddenInput}

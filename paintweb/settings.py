@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'paintsite.apps.PaintsiteConfig',
     'django_cleanup',
     'easy_thumbnails',
+    'captcha',
 ]
 
 MIDDLEWARE = [

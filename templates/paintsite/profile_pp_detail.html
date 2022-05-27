@@ -1,21 +1,5 @@
-{% extends 'layout/basic.html' %}
+{% extends 'paintsite/detail.html' %}
 
-{% block title %}{{ pp.title }} - {{ pp.tag.name }}{% endblock %}
-
-{% block content %}
-    <div class="container-fluid mt-3">
-        <div class="col-md-auto">
-            <img src="{{ pp.image.url }}" class="main-image">
-        </div>
-        <div class="col">
-            <h2>{{ pp.title }}</h2>
-            <p>{{ pp.description }}</p>
-            <p class="text-right font-italic">
-                Published {{ pp.created_at }}
-            </p>
-        </div>
-    </div>
-    <p>
-        <a href="{% url 'paintsite:profile' %}{{ all }}">Back</a>
-    </p>
+{% block back_url %}
+    <a href="{% url 'paintsite:profile' %}{{ all }}">Back</a>
 {% endblock %}

@@ -79,3 +79,17 @@ class PictureBoard(models.Model):
         verbose_name = 'Picture'
         verbose_name_plural = 'Pictures'
         ordering = ['-created_at']
+
+
+class Comment(models.Model):
+    pp = models.ForeignKey(PictureBoard, on_delete=models.CASCADE, verbose_name='Picture post')
+    author = models.CharField(max_length=30, verbose_name='Author')
+    content = models.TextField(verbose_name='Content')
+    is_active = models.BooleanField(default=True, db_index=True,
+                                    verbose_name='Show in the screen?')
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Published')
+
+    class Meta:
+        verbose_name = 'Comment'
+        verbose_name_plural = 'Comments'
+        ordering = ['created_at']

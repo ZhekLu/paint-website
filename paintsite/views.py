@@ -14,8 +14,9 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
-from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm
-from paintsite.models import User, SubTag, PictureBoard
+from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm, UserCommentForm, \
+    GuestCommentForm
+from paintsite.models import User, SubTag, PictureBoard, Comment
 from paintsite.utilities import signer
 
 
@@ -147,20 +148,38 @@ def by_tag(request, pk):
     return render(request, 'paintsite/by_tag.html', context)
 
 
-def detail(request, tag_pk, pk):
-    pp = get_object_or_404(PictureBoard, pk=pk)
-    context = {'pp': pp}
-    return render(request, 'paintsite/detail.html', context)
-
-
 # Picture Posts
+
+def get_detail_context(request, pk):
+    pp = PictureBoard.objects.get(pk=pk)
+    comments = Comment.objects.filter(pp=pk, is_active=True)
+    initial = {'pp': pp.pk}
+    if request.user.is_authenticated:
+        initial['author'] = request.user.username
+        form_class = UserCommentForm
+    else:
+        form_class = GuestCommentForm
+    form = form_class(initial=initial)
+
+    if request.method == 'POST':
+        c_form = form_class(request.POST)
+        if c_form.is_valid():
+            c_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment was added')
+        else:
+            form = c_form
+            messages.add_message(request, messages.WARNING, 'Comment was not added')
+
+    return {'pp': pp, 'comments': comments, 'form': form}
+
+
+def detail(request, tag_pk, pk):
+    return render(request, 'paintsite/detail.html', get_detail_context(request, pk))
 
 
 @login_required
 def profile_pp_detail(request, pk):
-    pp = get_object_or_404(PictureBoard, pk=pk)
-    context = {'pp': pp}
-    return render(request, 'paintsite/profile_pp_detail.html', context)
+    return render(request, 'paintsite/profile_pp_detail.html', get_detail_context(request, pk))
 
 
 @login_required
