@@ -7,14 +7,14 @@ from django.core.paginator import Paginator
 from django.core.signing import BadSignature
 from django.db.models import Q
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
-from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm
+from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm
 from paintsite.models import User, SubTag, PictureBoard
 from paintsite.utilities import signer
 
@@ -157,4 +157,18 @@ def detail(request, tag_pk, pk):
 def profile_pp_detail(request, pk):
     pp = get_object_or_404(PictureBoard, pk=pk)
     context = {'pp': pp}
-    return render(request, 'paintsite/profile_detail.html', context)
+    return render(request, 'paintsite/profile_pp_detail.html', context)
+
+
+@login_required
+def profile_pp_add(request):
+    if request.method == 'POST':
+        form = PictureForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Picture was published')
+            return redirect('paintsite:profile')
+    else:
+        form = PictureForm(initial={'author': request.user.pk})
+    context = {'form': form}
+    return render(request, 'paintsite/profile_pp_add.html', context)

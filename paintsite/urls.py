@@ -2,7 +2,7 @@ from django.urls import path
 
 from paintsite.views import index, other_page, PSLoginView, profile, PSLogoutView, ChangeUserInfoView, \
     PSPasswordChangeView, RegisterUserView, RegisterDoneView, user_activate, DeleteUserView, by_tag, detail, \
-    profile_pp_detail
+    profile_pp_detail, profile_pp_add
 
 app_name = 'paintsite'
 
@@ -11,6 +11,7 @@ urlpatterns = [
     path('accounts/password/change', PSPasswordChangeView.as_view(), name='password_change'),
     path('accounts/profile/delete', DeleteUserView.as_view(), name='profile_delete'),
     path('accounts/profile/change', ChangeUserInfoView.as_view(), name='profile_change'),
+    path('accounts/profile/add/', profile_pp_add, name='profile_pp_add'),
     path('accounts/profile/<int:pk>/', profile_pp_detail, name='profile_pp_detail'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/register/activate/<str:sign>/', user_activate, name='register_activate'),

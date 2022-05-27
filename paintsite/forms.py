@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
-from .models import User, SuperTag, SubTag
+from .models import User, SuperTag, SubTag, PictureBoard
 from .apps import user_registered
 
 
@@ -68,4 +68,11 @@ class SubTagForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     keyword = forms.CharField(required=False, max_length=20, label='')
+
+
+class PictureForm(forms.ModelForm):
+    class Meta:
+        model = PictureBoard
+        fields = '__all__'
+        widgets = {'author': forms.HiddenInput}
 

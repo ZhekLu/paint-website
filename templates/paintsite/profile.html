@@ -13,6 +13,7 @@
     {% else %}
     <p>Hi! Welcome here.</p>
     {% endif %}
+    <p><a href="{% url 'paintsite:profile_pp_add' %}">Add picture</a></p>
     <h3>Your pictures</h3>
         {% if pps %}
         <ul class="list-unstyled">
