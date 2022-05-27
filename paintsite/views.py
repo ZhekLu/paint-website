@@ -153,6 +153,9 @@ def detail(request, tag_pk, pk):
     return render(request, 'paintsite/detail.html', context)
 
 
+# Picture Posts
+
+
 @login_required
 def profile_pp_detail(request, pk):
     pp = get_object_or_404(PictureBoard, pk=pk)
@@ -172,3 +175,31 @@ def profile_pp_add(request):
         form = PictureForm(initial={'author': request.user.pk})
     context = {'form': form}
     return render(request, 'paintsite/profile_pp_add.html', context)
+
+
+@login_required
+def profile_pp_change(request, pk):
+    pp = get_object_or_404(PictureBoard, pk=pk)
+    if request.method == 'POST':
+        form = PictureForm(request.POST, request.FILES, instance=pp)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Picture was changed')
+            return redirect('paintsite:profile')
+    else:
+        form = PictureForm(instance=pp)
+    context = {'form': form}
+    return render(request, 'paintsite/profile_pp_change.html', context)
+
+
+@login_required
+def profile_pp_delete(request, pk):
+    pp = get_object_or_404(PictureBoard, pk=pk)
+    if request.method == 'POST':
+        pp.delete()
+        messages.add_message(request, messages.SUCCESS, 'Picture was deleted')
+        return redirect('paintsite:profile')
+    else:
+        context = {'pp': pp}
+        return render(request, 'paintsite/profile_pp_delete.html', context)
+

@@ -24,11 +24,16 @@
                     <img class="mr-3" src="{% thumbnail pp.image 'default' %}">
                 </a>
                 <div class="media-body">
+                    <p>Tag: {{ pp.tag }}</p>
                     <h3><a href="{{ url }}{{ all }}">
                         {{ pp.title }}
                     </a></h3>
                     <div>{{ pp.description }}</div>
                     <p class="text-right font-italic">{{ pp.created_at }}</p>
+                    <p class="text-right mt-2">
+                        <a href="{% url 'paintsite:profile_pp_change' pk=pp.pk%}">Change</a>
+                        <a href="{% url 'paintsite:profile_pp_delete' pk=pp.pk%}">Delete</a>
+                    </p>
                 </div>
             </li>
             {% endfor %}
