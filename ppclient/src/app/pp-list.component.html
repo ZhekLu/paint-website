@@ -1,1 +1,6 @@
-<p>pp-list works!</p>
+<h2>Last 10 pictures</h2>
+<div *ngFor="let pp of pps">
+  <h3><a [routerLink]="[pp.id]">{{ pp.title }}</a></h3>
+  <p>{{ pp.description }}</p>
+  <p class="date">{{ pp.created_at|date:'medium'}}</p>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PpService} from "./pp.service";
 
 @Component({
   selector: 'app-pp-list',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pp-list.component.css']
 })
 export class PpListComponent implements OnInit {
+  private pps: Object[] | undefined;
 
-  constructor() { }
+  constructor(private pp_service: PpService) {}
 
   ngOnInit(): void {
+    this.pp_service.getPps().subscribe(
+      (pps: Object[]) => {this.pps = pps;}
+    );
   }
 
 }
