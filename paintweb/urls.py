@@ -9,6 +9,7 @@ urlpatterns = [
     path('paintsite/', include('paintsite.urls')),
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
+    path('api/', include('api.urls')),
     path('', include('paintapp.urls')),
 ]
 
