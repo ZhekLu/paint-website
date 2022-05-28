@@ -9,7 +9,7 @@ class User(AbstractUser):
     send_messages = models.BooleanField(default=True, verbose_name='Want to get messages about new comments?')
 
     def delete(self, *args, **kwargs):
-        for post in self.post_set.all():
+        for post in self.pictureboard_set.all():
             post.delete()
         super().delete(*args, **kwargs)
 
