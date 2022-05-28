@@ -6,11 +6,11 @@ from django.contrib.staticfiles.views import serve
 from django.views.decorators.cache import never_cache
 
 urlpatterns = [
-    path('paintsite/', include('paintsite.urls')),
+    path('paintapp/', include('paintapp.urls')),
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
     path('api/', include('api.urls')),
-    path('', include('paintapp.urls')),
+    path('', include('paintsite.urls')),
 ]
 
 if settings.DEBUG:
