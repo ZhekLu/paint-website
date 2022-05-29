@@ -28,8 +28,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-{#    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>#}
-{#    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>#}
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body data-spy="scroll" data-target=".navbar">
@@ -50,21 +50,24 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{% url 'paintapp:info' %}" target="_blank"
-                    onclick="window.open('http://127.0.0.1:8000/info')">About</a>
+                    onclick="window.open(this.href)">About</a>
                 </li>
                 <li>
                     <a href="{% url 'paintapp:new_paint' %}">Paint</a>
                 </li>
                 <li>
-                    <a href="{% url 'paintapp:old_paint' %}">OldPaint</a>
+                    <a href="{% url 'paintapp:old_paint' %}" target="_blank"
+                    onclick="window.open(this.href)">OldPaint</a>
                 </li>
                 <li>
-                    <a href="#">Gallery</a>
+                    <a href="{% url 'paintsite:index' %}" target="_blank"
+                    onclick="window.open(this.href)">Gallery</a>
                 </li>
-{#                // TODO! only if user auth#}
+                {% if user.is_authenticated %}
                 <li>
                     <a href="#">Profile</a>
                 </li>
+                {% endif %}
             </ul>
         </div>
         <!-- /.navbar-collapse -->
