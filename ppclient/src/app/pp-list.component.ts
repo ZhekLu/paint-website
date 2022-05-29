@@ -7,7 +7,7 @@ import {PpService} from "./pp.service";
   styleUrls: ['./pp-list.component.css']
 })
 export class PpListComponent implements OnInit {
-  private pps: Object[] | undefined;
+  public pps: any[] | undefined;
 
   constructor(private pp_service: PpService) {}
 

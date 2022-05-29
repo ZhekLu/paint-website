@@ -1,1 +1,24 @@
-<p>pp-detail works!</p>
+<ng-container *ngIf="pp">
+  <div class="image">
+    <img src="{{ pp.image }}">
+  </div>
+  <div class="others">
+    <h2>{{ pp.title }}</h2>
+    <p>{{ pp.description }}</p>
+    <p class="date">{{ pp.created_at|date:'medium' }}</p>
+  </div>
+</ng-container>
+<h3>New comment</h3>
+<form (ngSubmit)="submitComment()">
+  <p>Name: <input [(ngModel)]="author" name="author" required></p>
+  <p>Password: <input type="password" [(ngModel)]="password" name="author" required></p>
+  <p>Content:<br><textarea [(ngModel)]="content" name="content" required></textarea></p>
+  <p><input type="submit" value="Add"></p>
+</form>
+<div class="comment" *ngFor="let comment of comments">
+  <h4>{{ comment['author'] }}</h4>
+  <p>{{ comment['content'] }}</p>
+  <p class="date">
+    {{ comment['created_at']|date:'medium' }}
+  </p>
+</div>
