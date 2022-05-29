@@ -1,0 +1,70 @@
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Main{% endblock %} - Pictures board</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css"
+    href="{% static 'paintsite/style.css' %}">
+    {% bootstrap_javascript jquery='slim' %}
+</head>
+<body class="container-fluid">
+    <header class="mb-4">
+        <h1 class="display-1 text-center">Pictures</h1>
+    </header>
+    <div class="row">
+        <ul class="col nav justify-content-end border">
+            <li class="nav-item"><a class="nav-link" href="{% url 'paintsite:register' %}">Registration</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                   data-toggle="dropdown"
+                   href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">Profile</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'paintsite:profile' %}">My pictures</a>
+                    <a class="dropdown-item" href="{% url 'paintsite:profile_change' %}">Change personal data</a>
+                    <a class="dropdown-item" href="{% url 'paintsite:password_change' %}">Change password</a>
+                    <div class="dropdown-devider"></div>
+                    <a class="dropdown-item" href="{% url 'paintsite:logout' %}">Quit</a>
+                    <div class="dropdown-devider"></div>
+                    <a class="dropdown-item" href="{% url 'paintsite:profile_delete' %}">Delete</a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'paintsite:login' %}">Sign in</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="row">
+        <nav class="col-md-auto nav flex-column border">
+            <a class="nav-link root" href="{% url 'paintsite:index' %}">Main</a>
+
+            {% for tag in tags %}
+            {% ifchanged tag.super_tag.pk %}
+            <span class="nav-link root font-weight-bold">
+                {{ tag.super_tag.name }}
+            </span>
+            {% endifchanged %}
+            <a class="nav-link" href="{% url 'paintsite:by_tag' pk=tag.pk %}">
+                {{ tag.name }}
+            </a>
+            {% endfor %}
+
+            <a class="nav-link root" href="#">About Site</a>
+        </nav>
+        <section class="col border py-2">
+            {% bootstrap_messages %}
+            {% block content %}
+            {% endblock %}
+        </section>
+    </div>
+    <footer class="mt-3">
+        <p class="text-right font-italic">&copy; readers.</p>
+    </footer>
+</body>
+</html>

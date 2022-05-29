@@ -1,0 +1,9 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}Error while activate{% endblock %}
+
+{% block content %}
+    <h2>Activation</h2>
+    <p>Activation of user with this name failed.</p>
+    <p><a href="{% url 'paintsite:register' %}">Try registrate again.</a></p>
+{% endblock %}

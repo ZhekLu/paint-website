@@ -1,0 +1,44 @@
+{% extends 'layout/basic.html' %}
+
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}User profile{% endblock %}
+
+{% block content %}
+    <h2>Profile of {{ user.username }}</h2>
+    {% if user.first_name and user.last_name %}
+    <p>Hi, {{ user.first_name }} {{ user.last_name }}!</p>
+    {% else %}
+    <p>Hi! Welcome here.</p>
+    {% endif %}
+    <p><a href="{% url 'paintsite:profile_pp_add' %}">Add picture</a></p>
+    <h3>Your pictures</h3>
+        {% if pps %}
+        <ul class="list-unstyled">
+            {% for pp in pps %}
+            <li class="media my-5 p-3 border">
+                {% url 'paintsite:profile_pp_detail' pk=pp.pk as url %}
+                <a href="{{ url }}{{ all }}">
+                    <img class="mr-3" src="{% thumbnail pp.image 'default' %}">
+                </a>
+                <div class="media-body">
+                    <p>Tag: {{ pp.tag }}</p>
+                    <h3><a href="{{ url }}{{ all }}">
+                        {{ pp.title }}
+                    </a></h3>
+                    <div>{{ pp.description }}</div>
+                    <p class="text-right font-italic">{{ pp.created_at }}</p>
+                    <p class="text-right mt-2">
+                        <a href="{% url 'paintsite:profile_pp_change' pk=pp.pk%}">Change</a>
+                        <a href="{% url 'paintsite:profile_pp_delete' pk=pp.pk%}">Delete</a>
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2 class="mb-2">You don't have your pictures yet</h2>
+    {% endif %}
+{% endblock %}
