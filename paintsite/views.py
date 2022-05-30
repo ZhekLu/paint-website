@@ -26,9 +26,17 @@ def index(request):
     return render(request, 'paintsite/index.html', context)
 
 
+def test_index(request):
+    return render(request, 'paintsite/home/test_index.html')
+
+
+def new_index(request):
+    return render(request, 'paintsite/home/index.html')
+
+
 def other_page(request, page):
     try:
-        template = get_template('paintsite/' + page + '.html')
+        template = get_template('paintsite/home/' + page + '.html')
     except TemplateDoesNotExist:
         raise Http404
     return HttpResponse(template.render(request=request))
