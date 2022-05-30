@@ -27,7 +27,7 @@ def index(request):
 
 
 def test_index(request):
-    return render(request, 'paintsite/home/test_index.html')
+    return render(request, 'includes/buttons.html')
 
 
 def new_index(request):
