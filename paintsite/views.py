@@ -23,17 +23,11 @@ from paintsite.utilities import signer
 def index(request):
     pps = PictureBoard.objects.filter(is_public=True)[:10]
     context = {'pps': pps}
-    return render(request, 'paintsite/index.html', context)
+    return render(request, 'paintsite/home/index.html', context)
 
 
 def test_index(request):
     return render(request, 'includes/buttons.html')
-
-
-def new_index(request):
-    pps = PictureBoard.objects.filter(is_public=True)[:10]
-    context = {'pps': pps}
-    return render(request, 'paintsite/home/index.html', context)
 
 
 def other_page(request, page):
@@ -47,7 +41,7 @@ def other_page(request, page):
 @login_required
 def profile(request):
     context = {'pps': PictureBoard.objects.filter(author=request.user.pk)}
-    return render(request, 'paintsite/profile.html', context)
+    return render(request, 'paintsite/profile/profile.html', context)
 
 
 class PSLoginView(LoginView):

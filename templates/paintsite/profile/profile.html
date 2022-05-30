@@ -1,0 +1,190 @@
+{% extends "layout/base.html" %}
+
+{% load static %}
+
+{% block title %} Widgets {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+            <!-- Welcome Info -->
+			<h4 class="page-title">Profile of
+                {% if user.first_name and user.last_name %}
+                    {{ user.first_name }} {{ user.last_name }}
+                {% else %}
+                    {{ user.username }}
+                {% endif %}
+            </h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-info card-annoucement card-round">
+                        <div class="card-body text-center">
+                            <div class="card-opening">
+                                {% if user.first_name %}
+                                Welcome {{ user.first_name }},
+                                {% else %}
+                                Welcome {{ user.username }},
+                                {% endif %}
+                            </div>
+                            <div class="card-desc">
+                                Congrats and best wishes for success in your talent new life!
+                                I knew that you would do this!
+                            </div>
+                            <div class="card-detail">
+                                <div class="btn btn-light btn-rounded">Add picture</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <!-- Picture posts count info -->
+					<div class="card card-stats card-round">
+						<div class="card-body">
+							<div class="row align-items-center">
+								<div class="col-icon">
+									<div class="icon-big text-center icon-info bubble-shadow-small">
+										<i class="flaticon-interface-6"></i>
+									</div>
+								</div>
+								<div class="col col-stats ml-3 ml-sm-0">
+									<div class="numbers">
+										<p class="card-category">Pictures published</p>
+										<h4 class="card-title">{{ pps.count }}</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+                <div class="col-sm-6 col-md-3">
+                        <!-- User comments count info -->
+                        <div class="card card-stats card-round">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center">
+                                            <i class="flaticon-twitter text-primary"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7 col-stats">
+                                        <div class="numbers">
+                                            <p class="card-category">Comments on your posts</p>
+                                            <h4 class="card-title">+45K</h4>
+{#                                            TODO! comments count#}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			<!-- User Pictures -->
+			<h4 class="page-title">Your Pictures</h4>
+            {% if pps %}
+                <div class="row">
+                    {% for pp in pps %}
+                    <div class="col-md-4">
+                        <div class="card card-post card-round">
+                            {% url 'paintsite:detail' tag_pk=pp.tag.pk pk=pp.pk as url %}
+                            <a href="{{ url }}{{ all }}">
+                                <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="info-post ml-2">
+                                        <p class="date text-muted">{{ pp.created_at }}</p>
+                                    </div>
+                                </div>
+                                <div class="separator-solid"></div>
+                                <p class="card-category text-info mb-1">
+                                    <a href="{% url 'paintsite:by_tag' pk=pp.tag.pk %}">{{ pp.tag }}</a>
+                                </p>
+                                <h3 class="card-title">
+                                    <a href="{{ url }}{{ all }}">
+                                        {{ pp.title }}
+                                    </a>
+                                </h3>
+                                <p class="card-text">{{ pp.description }}</p>
+                                <div class="card-tools text-right">
+                                    <a href="{% url 'paintsite:profile_pp_change' pk=pp.pk%}" class="btn btn-info btn-rounded btn-border btn-sm">Change</a>
+                                    <a href="{% url 'paintsite:profile_pp_delete' pk=pp.pk%}" class="btn btn-danger btn-rounded btn-border btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+            <h2 class="mb-2">You don't have any pictures yet.</h2>
+            {% endif %}
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="{% static "paintsite/assets/js/setting-demo.js" %}"></script>
+	<script>
+		$('#lineChart').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#177dff',
+			fillColor: 'rgba(23, 125, 255, 0.14)'
+		});
+
+		$('#lineChart2').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#f3545d',
+			fillColor: 'rgba(243, 84, 93, .14)'
+		});
+
+		$('#lineChart3').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+
+		$('#lineChart4').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart5').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart6').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+	</script>
+
+{% endblock javascripts %}
