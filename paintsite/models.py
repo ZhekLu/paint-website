@@ -13,6 +13,9 @@ class User(AbstractUser):
             post.delete()
         super().delete(*args, **kwargs)
 
+    def get_initial(self):
+        return self.username.upper()[:2]
+
     class Meta(AbstractUser.Meta):
         pass
 

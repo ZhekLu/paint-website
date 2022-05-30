@@ -31,7 +31,9 @@ def test_index(request):
 
 
 def new_index(request):
-    return render(request, 'paintsite/home/index.html')
+    pps = PictureBoard.objects.filter(is_public=True)[:10]
+    context = {'pps': pps}
+    return render(request, 'paintsite/home/index.html', context)
 
 
 def other_page(request, page):
