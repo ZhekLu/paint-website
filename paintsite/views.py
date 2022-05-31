@@ -113,7 +113,7 @@ def user_activate(request, sign):
 
 class DeleteUserView(LoginRequiredMixin, DeleteView):
     model = User
-    template_name = 'paintsite/delete_user.html'
+    template_name = 'paintsite/profile/profile_delete.html'
     success_url = reverse_lazy('paintsite:index')
 
     def setup(self, request, *args, **kwargs):
