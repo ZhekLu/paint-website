@@ -1,0 +1,52 @@
+{% extends 'paintsite/home/index.html' %}
+
+
+{% load static %}
+
+{% block title %}Log out{% endblock %}
+
+{% block content %}
+    <div class="content">
+		<div class="page-inner">
+			<h4 class="page-title">We will be waiting for your return.</h4>
+            <a href="{% url 'paintsite:index' %}"
+               class="btn btn-info btn-border btn-lg fw-bold mb-3">Back to main page</a>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="{% static "paintsite/assets/js/setting-demo2.js" %}"></script>
+	<script>
+		function Notif(){
+            const placementFrom = 'bottom';
+            const placementAlign = 'right';
+            const state = 'success';
+            const style = 'withicon';
+            const content = {};
+
+            content.message = 'You was successfully logged out.';
+			content.title = 'Log out';
+			if (style === "withicon") {
+				content.icon = 'fa fa-bell';
+			} else {
+				content.icon = 'none';
+			}
+			content.url = 'index.html';
+			content.target = '_blank';
+
+			$.notify(content,{
+				type: state,
+				placement: {
+					from: placementFrom,
+					align: placementAlign
+				},
+				time: 1000,
+				delay: 0,
+			});
+		}
+        Notif();
+	</script>
+
+{% endblock javascripts %}

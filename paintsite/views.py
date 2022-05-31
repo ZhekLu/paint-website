@@ -49,7 +49,7 @@ class PSLoginView(LoginView):
 
 
 class PSLogoutView(LoginRequiredMixin, LogoutView):
-    template_name = 'paintsite/logout.html'
+    template_name = 'paintsite/authentication/logout.html'
 
 
 # Change Views
