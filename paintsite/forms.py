@@ -1,7 +1,7 @@
 from captcha.fields import CaptchaField
 from django import forms
 from django.contrib.auth import password_validation
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
 
 from .models import User, SuperTag, SubTag, PictureBoard, Comment
@@ -65,6 +65,31 @@ class ChangeUserInfoForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'send_messages')
+
+
+class PSPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(PSPasswordChangeForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].widget = forms.PasswordInput(
+            attrs={
+                "autocomplete": "current-password",
+                "autofocus": True,
+                "placeholder": "Previous password",
+                "class": "form-control"
+            }
+        )
+        self.fields['new_password1'].widget = forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "placeholder": "New password",
+                "class": "form-control"
+            })
+        self.fields['new_password2'].widget = forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                "placeholder": "New password confirmation",
+                "class": "form-control"
+            })
 
 
 class RegisterUserForm(forms.ModelForm):

@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
 from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm, UserCommentForm, \
-    GuestCommentForm, LoginForm
+    GuestCommentForm, LoginForm, PSPasswordChangeForm
 from paintsite.models import User, SubTag, PictureBoard, Comment
 from paintsite.utilities import signer
 
@@ -74,7 +74,8 @@ class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 
 class PSPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
-    template_name = 'paintsite/password_change.html'
+    form_class = PSPasswordChangeForm
+    template_name = 'paintsite/profile/profile_password_change.html'
     success_url = reverse_lazy('paintsite:profile')
     success_message = 'Password was changed.'
 
