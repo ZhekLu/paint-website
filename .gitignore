@@ -3,3 +3,4 @@ __pycache__
 makefile
 .angular/
 node_modules/
+.env
