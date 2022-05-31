@@ -226,5 +226,5 @@ def profile_pp_delete(request, pk):
         return redirect('paintsite:profile')
     else:
         context = {'pp': pp}
-        return render(request, 'paintsite/profile_pp_delete.html', context)
+        return render(request, 'paintsite/profile/profile_pp_delete.html', context)
 

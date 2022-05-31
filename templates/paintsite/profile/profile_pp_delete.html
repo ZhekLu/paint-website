@@ -1,0 +1,144 @@
+{% extends "layout/base.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}{{ pp.title }} - {{ pp.tag.name }}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+            <h4 class="page-title">Delete Post</h4>
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="avatar">
+                                            <span class="avatar-title rounded-circle border border-white">
+                                                {{ pp.author.get_initial }}
+                                            </span>
+                                        </div>
+                                        <div class="info-post ml-2">
+                                            <p class="username">{{ pp.author.username }}</p>
+                                            <p class="date text-muted">{{ pp.created_at }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <p class="card-category text-info mb-1">
+                                        <a href="{% url 'paintsite:by_tag' pk=pp.tag.pk %}">{{ pp.tag }}</a>
+                                    </p>
+                                    <h3 class="card-title">
+                                            {{ pp.title }}
+                                    </h3>
+                                    <p class="card-text">{{ pp.description }}</p>
+                                </div>
+                                <form method="post">
+
+                                {% csrf_token %}
+
+                                <div class="card-action">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card">
+                                                <button type="submit" class="btn btn-danger btn-border sm-6 md-3">
+                                                    Delete
+                                                </button>&nbsp; &nbsp;
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card">
+                                                <a href="{% url 'paintsite:profile_pp_change' pk=pp.pk %}" class="btn btn-info btn-border sm-6 md-3">Edit</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="card">
+                                                <a href="{% url 'paintsite:profile' %}{{ all }}" class="btn btn-primary btn-border sm-6 md-3">Back To Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+						</div>
+					</div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="{% static "paintsite/assets/js/setting-demo.js" %}"></script>
+	<script>
+		$('#lineChart').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#177dff',
+			fillColor: 'rgba(23, 125, 255, 0.14)'
+		});
+
+		$('#lineChart2').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#f3545d',
+			fillColor: 'rgba(243, 84, 93, .14)'
+		});
+
+		$('#lineChart3').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+
+		$('#lineChart4').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart5').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart6').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+	</script>
+
+{% endblock javascripts %}
