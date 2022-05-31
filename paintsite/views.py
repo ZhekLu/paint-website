@@ -15,7 +15,7 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
 from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm, UserCommentForm, \
-    GuestCommentForm
+    GuestCommentForm, LoginForm
 from paintsite.models import User, SubTag, PictureBoard, Comment
 from paintsite.utilities import signer
 
@@ -45,6 +45,7 @@ def profile(request):
 
 
 class PSLoginView(LoginView):
+    form_class = LoginForm
     template_name = 'paintsite/authentication/login.html'
 
 

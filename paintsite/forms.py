@@ -1,10 +1,29 @@
 from captcha.fields import CaptchaField
 from django import forms
 from django.contrib.auth import password_validation
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 
 from .models import User, SuperTag, SubTag, PictureBoard, Comment
 from .apps import user_registered
+
+
+class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(LoginForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(
+            attrs={
+                "autofocus": True,
+                "placeholder": "Username",
+                "class": "form-control"
+            })
+
+        self.fields['password'].widget = forms.PasswordInput(
+            attrs={
+                "autocomplete": "current-password",
+                "placeholder": "Password",
+                "class": "form-control"
+            })
 
 
 class ChangeUserInfoForm(forms.ModelForm):
