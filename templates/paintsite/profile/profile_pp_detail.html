@@ -1,0 +1,5 @@
+{% extends 'paintsite/home/pp_detail.html' %}
+
+{% block back_url %}
+    <a href="{% url 'paintsite:profile' %}{{ all }}" class="btn btn-primary btn-rounded btn-border btn-sm">Back To Profile</a>
+{% endblock %}

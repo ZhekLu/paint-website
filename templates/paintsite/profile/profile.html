@@ -35,7 +35,7 @@
                                 I knew that you would do this!
                             </div>
                             <div class="card-detail">
-                                <div class="btn btn-light btn-rounded">Add picture</div>
+                                <a class="btn btn-light btn-rounded" href="{% url 'paintsite:profile_pp_add' %}">Add picture</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     {% for pp in pps %}
                     <div class="col-md-4">
                         <div class="card card-post card-round">
-                            {% url 'paintsite:detail' tag_pk=pp.tag.pk pk=pp.pk as url %}
+                            {% url 'paintsite:profile_pp_detail' pk=pp.pk as url %}
                             <a href="{{ url }}{{ all }}">
                                 <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
                             </a>

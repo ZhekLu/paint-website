@@ -178,12 +178,12 @@ def get_detail_context(request, pk):
 
 
 def detail(request, tag_pk, pk):
-    return render(request, 'paintsite/detail.html', get_detail_context(request, pk))
+    return render(request, 'paintsite/home/pp_detail.html', get_detail_context(request, pk))
 
 
 @login_required
 def profile_pp_detail(request, pk):
-    return render(request, 'paintsite/profile_pp_detail.html', get_detail_context(request, pk))
+    return render(request, 'paintsite/profile/profile_pp_detail.html', get_detail_context(request, pk))
 
 
 @login_required

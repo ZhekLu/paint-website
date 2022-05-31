@@ -92,6 +92,9 @@ class Comment(models.Model):
                                     verbose_name='Show in the screen?')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Published')
 
+    def get_author_initial(self):
+        return self.author.upper()[:2]
+
     class Meta:
         verbose_name = 'Comment'
         verbose_name_plural = 'Comments'
