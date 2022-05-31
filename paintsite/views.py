@@ -85,7 +85,7 @@ class PSPasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChan
 
 class RegisterUserView(CreateView):
     model = User
-    template_name = 'paintsite/register_user.html'
+    template_name = 'paintsite/authentication/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('paintsite:register_done')
 

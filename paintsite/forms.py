@@ -93,11 +93,55 @@ class PSPasswordChangeForm(PasswordChangeForm):
 
 
 class RegisterUserForm(forms.ModelForm):
-    email = forms.EmailField(required=True, label='Email address')
-    password = forms.CharField(label='Password', widget=forms.PasswordInput,
-                               help_text=password_validation.password_validators_help_text_html())
-    password_confirm = forms.CharField(label='Password confirmation', widget=forms.PasswordInput,
-                                       help_text='Confirm ur password')
+    email = forms.EmailField(required=True, label='Email address',
+                             widget=forms.EmailInput(
+                                 attrs={
+                                     "placeholder": "Enter Email",
+                                     "class": "form-control"
+                                 }))
+    password = forms.CharField(label='Password',
+                               help_text=password_validation.password_validators_help_text_html(),
+                               widget=forms.PasswordInput(
+                                   attrs={
+                                       "placeholder": "Password",
+                                       "class": "form-control"
+                                   }
+                               ))
+    password_confirm = forms.CharField(label='Password confirmation',
+                                       help_text='Confirm your password',
+                                       widget=forms.PasswordInput(
+                                           attrs={
+                                               "placeholder": "Password Confirmation",
+                                               "class": "form-control"
+                                           }
+                                       ))
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterUserForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        )
+        self.fields['first_name'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "First Name",
+                "class": "form-control"
+            }
+        )
+        self.fields['last_name'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "Last Name",
+                "class": "form-control"
+            }
+        )
+        self.fields['send_messages'].widget = forms.CheckboxInput(
+            attrs={
+                "placeholder": "Want to be notified by email",
+                "class": "form-control"
+            }
+        )
 
     def clean_password(self):
         password = self.cleaned_data['password']
@@ -160,7 +204,7 @@ class PictureForm(forms.ModelForm):
 class UserCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ('is_active', )
+        exclude = ('is_active',)
         widgets = {'author': forms.HiddenInput, 'pp': forms.HiddenInput}
 
 
