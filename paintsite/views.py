@@ -45,7 +45,7 @@ def profile(request):
 
 
 class PSLoginView(LoginView):
-    template_name = 'paintsite/login.html'
+    template_name = 'paintsite/authentication/login.html'
 
 
 class PSLogoutView(LoginRequiredMixin, LogoutView):
