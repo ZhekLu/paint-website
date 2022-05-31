@@ -91,7 +91,7 @@ class RegisterUserView(CreateView):
 
 
 class RegisterDoneView(TemplateView):
-    template_name = 'paintsite/register_done.html'
+    template_name = 'paintsite/authentication/register_done.html'
 
 
 # Activation
@@ -100,13 +100,13 @@ def user_activate(request, sign):
     try:
         username = signer.unsign(sign)
     except BadSignature:
-        return render(request, 'paintsite/bad_signature.html')
+        return render(request, 'paintsite/authentication/bad_signature.html')
 
     user = get_object_or_404(User, username=username)
     if user.is_activated:
-        template = 'paintsite/user_is_activated.html'
+        template = 'paintsite/authentication/user_is_activated.html'
     else:
-        template = 'paintsite/activation_done.html'
+        template = 'paintsite/authentication/activation_done.html'
         user.is_active = True
         user.is_activated = True
         user.save()

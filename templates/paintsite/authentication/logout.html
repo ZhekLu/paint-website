@@ -1,4 +1,4 @@
-{% extends 'paintsite/home/index.html' %}
+{% extends 'layout/base.html' %}
 
 
 {% load static %}
@@ -33,7 +33,7 @@
 			} else {
 				content.icon = 'none';
 			}
-			content.url = 'index.html';
+			content.url = "{% url 'paintsite:index' %}";
 			content.target = '_blank';
 
 			$.notify(content,{
