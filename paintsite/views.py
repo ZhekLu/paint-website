@@ -57,7 +57,7 @@ class PSLogoutView(LoginRequiredMixin, LogoutView):
 
 class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = User
-    template_name = 'paintsite/change_user_info.html'
+    template_name = 'paintsite/profile/profile_edit.html'
     form_class = ChangeUserInfoForm
     success_url = reverse_lazy('paintsite:profile')
     success_message = 'Personal data was changed.'

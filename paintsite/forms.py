@@ -8,7 +8,40 @@ from .apps import user_registered
 
 
 class ChangeUserInfoForm(forms.ModelForm):
-    email = forms.EmailField(required=True, label='Email address')
+    email = forms.EmailField(required=True, label='Email address',
+                             widget=forms.EmailInput(
+                                 attrs={
+                                     "placeholder": "Enter Email",
+                                     "class": "form-control"
+                                 }
+                             ))
+
+    def __init__(self, *args, **kwargs):
+        super(ChangeUserInfoForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        )
+        self.fields['first_name'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "First Name",
+                "class": "form-control"
+            }
+        )
+        self.fields['last_name'].widget = forms.TextInput(
+            attrs={
+                "placeholder": "Last Name",
+                "class": "form-control"
+            }
+        )
+        self.fields['send_messages'].widget = forms.CheckboxInput(
+            attrs={
+                "placeholder": "Want to be notified by email",
+                "class": "form-control"
+            }
+        )
 
     class Meta:
         model = User
