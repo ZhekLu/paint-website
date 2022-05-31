@@ -142,14 +142,14 @@ def by_tag(request, pk):
         keyword = ''
 
     form = SearchForm(initial={'keyword': keyword})
-    paginator = Paginator(pps, 2)
+    paginator = Paginator(pps, 6)
     if 'page' in request.GET:
         page_num = request.GET['page']
     else:
         page_num = 1
     page = paginator.get_page(page_num)
     context = {'tag': tag, 'page': page, 'pps': page.object_list, 'form': form}
-    return render(request, 'paintsite/by_tag.html', context)
+    return render(request, 'paintsite/home/by_tag.html', context)
 
 
 # Picture Posts

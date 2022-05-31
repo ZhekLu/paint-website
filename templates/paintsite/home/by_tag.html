@@ -1,8 +1,9 @@
 {% extends "layout/base.html" %}
 
 {% load static %}
+{% load bootstrap4 %}
 
-{% block title %} Widgets {% endblock %} 
+{% block title %}{{ tag }}{% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -11,14 +12,14 @@
 
 	<div class="content">
 		<div class="page-inner">
-			<!-- Last Pictures -->
-			<h4 class="page-title">Last Pictures</h4>
+			<!-- Tag Pictures -->
+			<h4 class="page-title">{{ tag }}</h4>
             {% if pps %}
                 <div class="row">
                     {% for pp in pps %}
                     <div class="col-md-4">
                         <div class="card card-post card-round">
-                            {% url 'paintsite:detail' tag_pk=pp.tag.pk pk=pp.pk as url %}
+                            {% url 'paintsite:detail' tag_pk=tag.pk pk=pp.pk as url %}
                             <a href="{{ url }}{{ all }}">
                                 <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
                             </a>
@@ -50,8 +51,9 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% bootstrap_pagination page url=keyword %}
             {% else %}
-            <h2 class="mb-2">We don't have any pictures for you now.</h2>
+            <h2 class="mb-2">There's no any pictures in this category yet.</h2>
             {% endif %}
 		</div>
 	</div>
