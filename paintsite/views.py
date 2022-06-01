@@ -26,10 +26,6 @@ def index(request):
     return render(request, 'paintsite/home/index.html', context)
 
 
-def test_index(request):
-    return render(request, 'includes/buttons.html')
-
-
 def other_page(request, page):
     try:
         template = get_template('paintsite/home/' + page + '.html')
