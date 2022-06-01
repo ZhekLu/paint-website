@@ -5,3 +5,4 @@ makefile
 node_modules/
 .env
 .coverage
+coverage.xml

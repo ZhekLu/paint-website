@@ -176,7 +176,7 @@ class RegisterUserForm(forms.ModelForm):
 
 
 class SubTagForm(forms.ModelForm):
-    super_rubric = forms.ModelChoiceField(
+    super_tag = forms.ModelChoiceField(
         queryset=SuperTag.objects.all(),
         empty_label=None,
         label='Parent tag',
