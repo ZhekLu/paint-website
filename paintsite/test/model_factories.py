@@ -11,6 +11,7 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = User
 
     username = factory.Sequence(lambda n: 'username_{}'.format(n))
+    email = faker.email()
     first_name = faker.word()
     last_name = faker.word()
     is_activated = True

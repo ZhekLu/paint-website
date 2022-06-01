@@ -8,9 +8,9 @@ app_name = 'paintsite'
 
 urlpatterns = [
     path('accounts/logout/', PSLogoutView.as_view(), name='logout'),
-    path('accounts/password/change', PSPasswordChangeView.as_view(), name='password_change'),
-    path('accounts/profile/delete', DeleteUserView.as_view(), name='profile_delete'),
-    path('accounts/profile/change', ChangeUserInfoView.as_view(), name='profile_change'),
+    path('accounts/password/change/', PSPasswordChangeView.as_view(), name='password_change'),
+    path('accounts/profile/delete/', DeleteUserView.as_view(), name='profile_delete'),
+    path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='profile_change'),
     path('accounts/profile/delete/<int:pk>/', profile_pp_delete, name='profile_pp_delete'),
     path('accounts/profile/change/<int:pk>/', profile_pp_change, name='profile_pp_change'),
     path('accounts/profile/add/', profile_pp_add, name='profile_pp_add'),
