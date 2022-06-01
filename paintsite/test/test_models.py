@@ -2,7 +2,9 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from paintsite.models import User, SuperTag, Tag, SubTag, Comment, PictureBoard
+from paintsite.models import User, SuperTag, SubTag, Comment, PictureBoard
+from paintsite.test.model_factories import UserFactory, PictureBoardFactory, SuperTagFactory, SubTagFactory, \
+    CommentFactory
 
 
 class UserModelTest(TestCase):
@@ -10,16 +12,11 @@ class UserModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        User.objects.create(first_name='Big', last_name='Bob',
-                            is_activated=True, send_messages=True, username='big_bob')
-        User.objects.create(is_activated=True, send_messages=True, username='other')
-        Tag.objects.create(name='Super', super_tag=None)
-        Tag.objects.create(name='Not', super_tag=Tag.objects.get(name='Super'))
-        PictureBoard.objects.create(tag_id=2, title='Post', author=User.objects.get(id=1), is_public=True)
-        PictureBoard.objects.create(tag_id=2, title='Post', author=User.objects.get(id=1), is_public=True)
-        PictureBoard.objects.create(tag_id=2, title='Post', author=User.objects.get(id=2), is_public=True)
-        PictureBoard.objects.create(tag_id=2, title='Post', author=User.objects.get(id=2), is_public=True)
-
+        user = UserFactory.create(username='big_bob')
+        PictureBoardFactory.create(author=user)
+        PictureBoardFactory.create(author=user)
+        PictureBoardFactory.create()
+        PictureBoardFactory.create()
     # Labels Tests
 
     def test_first_name_label(self):
@@ -56,7 +53,7 @@ class UserModelTest(TestCase):
 
     def test_last_name_max_length(self):
         user = User.objects.get(id=1)
-        max_length = User._meta.get_field('last_name').max_length
+        max_length = user._meta.get_field('last_name').max_length
         self.assertEquals(max_length, 150)
 
     def test_user_name_max_length(self):
@@ -87,8 +84,8 @@ class SuperTagManagerTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Tag.objects.create(name='Super', super_tag=None)
-        Tag.objects.create(name='Not', super_tag=Tag.objects.get(name='Super'))
+        SuperTagFactory.create()
+        SubTagFactory.create()
 
     def test_get_queryset(self):
         q = SuperTag.objects.all()
@@ -100,7 +97,7 @@ class SuperTagModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Tag.objects.create(name='Super', super_tag=None)
+        SuperTagFactory.create()
 
     def test__str__(self):
         tag = SuperTag.objects.get(id=1)
@@ -111,8 +108,7 @@ class SubTagManagerTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Tag.objects.create(name='Super', super_tag=None)
-        Tag.objects.create(name='Not', super_tag=Tag.objects.get(name='Super'))
+        SubTagFactory.create()
 
     def test_get_queryset(self):
         q = SubTag.objects.all()
@@ -124,12 +120,12 @@ class SubTagModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Tag.objects.create(name='Super', super_tag=None)
-        Tag.objects.create(name='Not', super_tag=Tag.objects.get(name='Super'))
+        super_tag = SuperTagFactory.create(name='SuperTag')
+        SubTagFactory.create(name='Not', super_tag=super_tag)
 
     def test__str__(self):
         tag = SubTag.objects.get(name='Not')
-        expected_object_name = '%s - %s' % (tag.super_tag.name, tag.name)
+        expected_object_name = 'SuperTag - Not'
         self.assertEquals(expected_object_name, str(tag))
 
 
@@ -137,11 +133,7 @@ class CommentModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        Tag.objects.create(name='Super', super_tag=None)
-        Tag.objects.create(name='Not', super_tag=Tag.objects.get(name='Super'))
-        User.objects.create(username='bob')
-        PictureBoard.objects.create(tag_id=1, title='Post', author=User.objects.get(id=1), is_public=True)
-        Comment.objects.create(pp_id=1, author='Bob', content='Comment')
+        CommentFactory.create(author='Bob')
 
     def test__str__(self):
         comment = Comment.objects.get(id=1)

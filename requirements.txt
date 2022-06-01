@@ -2,8 +2,10 @@ Django~=4.0.4
 django-bootstrap4
 easy-thumbnails
 django-cleanup
-django-simple-captcha
-djangorestframework
+django-simple-captcha~=0.5.17
+djangorestframework~=3.13.1
 django-cors-headers
-python-dotenv
+python-dotenv~=0.20.0
 coverage
+factory_boy
+Faker~=13.12.0
