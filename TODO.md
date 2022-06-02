@@ -21,17 +21,23 @@ ___________________________
 
 ## Paint Website
 
-- [ ] Models
-- [ ] CRUD
-- [ ] Admin panel
-- [ ] Authorization
-- [ ] pytest + fixtures + parametrize
-- [ ] Code coverage 80% and more
-- [ ] logging
-- [ ] limit api using for unauthorized users 
+- [x] Models
+- [x] CRUD
+- [x] Admin panel
+- [x] Authorization
+- [x] pytest + fixtures + parametrize
+- [x] Code coverage 80% and more
+- [x] logging
+- [ ] logging levels and different formats
+- [x] limit api using for unauthorized users 
 ___
 - [ ] NoSQL db
-- [ ] indexing in db
-- [ ] many-to-many + one-to-many + one-to-one;
+- [x] indexing in db
+- [x] many-to-many + one-to-many + one-to-one;
 - [ ] join requests
 ___
+- [ ] Celery + Email
+- [ ] asyncio || multithreading || multiprocessing
+- [ ] Docker
+- [ ] Cloud
+- [ ] CI / CD
