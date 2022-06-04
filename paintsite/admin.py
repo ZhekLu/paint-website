@@ -9,7 +9,7 @@ from .utilities import send_activation_notification
 def send_activation_notifications(model_admin, request, queryset):
     for rec in queryset:
         if not rec.is_activated:
-            send_activation_notification(rec)
+            send_activation_notification(rec, request)
     model_admin.message_user(request, 'Emails with requirements were sent')
 
 

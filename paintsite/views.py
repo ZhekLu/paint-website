@@ -8,7 +8,7 @@ from django.core.signing import BadSignature
 from django.db.models import Q
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template import TemplateDoesNotExist
+from django.template.exceptions import TemplateDoesNotExist
 from django.template.loader import get_template
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
@@ -84,6 +84,11 @@ class RegisterUserView(CreateView):
     template_name = 'paintsite/authentication/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('paintsite:register_done')
+
+    def get_form_kwargs(self):
+        kwargs = super(RegisterUserView, self).get_form_kwargs()
+        kwargs.update({'request': self.request})
+        return kwargs
 
 
 class RegisterDoneView(TemplateView):
