@@ -2,7 +2,7 @@ from .models import SubTag
 
 
 def picture_board_context_processor(request):
-    context = {'tags': SubTag.objects.all(), 'keyword': '', 'all': ''}
+    context = {'keyword': '', 'all': ''}
 
     all_tags = SubTag.objects.all()
     current_tag = None

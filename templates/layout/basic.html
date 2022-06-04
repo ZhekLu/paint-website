@@ -44,15 +44,15 @@
         <nav class="col-md-auto nav flex-column border">
             <a class="nav-link root" href="{% url 'paintsite:index' %}">Main</a>
 
-            {% for tag in tags %}
-            {% ifchanged tag.super_tag.pk %}
-            <span class="nav-link root font-weight-bold">
-                {{ tag.super_tag.name }}
-            </span>
-            {% endifchanged %}
-            <a class="nav-link" href="{% url 'paintsite:by_tag' pk=tag.pk %}">
-                {{ tag.name }}
-            </a>
+            {% for super_tag, tags in tags_dict.items %}
+                <span class="nav-link root font-weight-bold">
+                    {{ super_tag }}
+                </span>
+                {% for tag in tags %}
+                    <a class="nav-link" href="{% url 'paintsite:by_tag' pk=tag.pk %}">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
             {% endfor %}
 
             <a class="nav-link root" href="#">About Site</a>
