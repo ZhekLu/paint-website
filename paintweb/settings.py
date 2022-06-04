@@ -109,7 +109,7 @@ AUTH_USER_MODEL = 'paintsite.User'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Kiev'
 
 USE_I18N = True
 
@@ -151,10 +151,11 @@ CORS_URLS_REGEX = r'^/api/.*$'
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'format': '{levelname} [{asctime}] {module} {process:d} {thread:d} {message}',
+            'datefmt': '%Y.%m.%d %H:%M:%S',
             'style': '{',
         },
         'simple': {
@@ -166,19 +167,28 @@ LOGGING = {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
         },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
     },
     'handlers': {
-        'console': {
-            'level': 'INFO',
+        'console_dev': {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'simple',
+        },
+        'console_prod': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
         },
         'file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
-            'filename': 'debug.log'
+            'filename': 'debug.log',
+            'maxBytes': 2*10**6
         },
         'mail_admins': {
             'level': 'ERROR',
@@ -187,7 +197,12 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console'],
+            'handlers': ['console_dev', 'console_prod'],
+            'propagate': True,
+        },
+        'django.server': {
+            'handlers': ['file'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
             'propagate': True,
         },
         'django.request': {
@@ -195,10 +210,5 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        '': {
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-            'handlers': ['file'],
-            'propagate': True,
-        }
     }
 }
