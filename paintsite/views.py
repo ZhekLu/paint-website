@@ -1,3 +1,5 @@
+import asyncio
+
 from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
@@ -14,14 +16,15 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, TemplateView, DeleteView
 
+from paintsite.coroutines import get_pps, get_comments
 from paintsite.forms import ChangeUserInfoForm, RegisterUserForm, SearchForm, PictureForm, UserCommentForm, \
     GuestCommentForm, LoginForm, PSPasswordChangeForm
-from paintsite.models import User, SubTag, PictureBoard, Comment
+from paintsite.models import User, SubTag, PictureBoard
 from paintsite.utilities import signer
 
 
 def index(request):
-    pps = PictureBoard.objects.filter(is_public=True)[:10]
+    pps = asyncio.run(get_pps(is_public=True))[:10]
     context = {'pps': pps}
     return render(request, 'paintsite/home/index.html', context)
 
@@ -36,7 +39,7 @@ def other_page(request, page):
 
 @login_required
 def profile(request):
-    context = {'pps': PictureBoard.objects.filter(author=request.user.pk)}
+    context = {'pps': asyncio.run(get_pps(author=request.user.pk))}
     return render(request, 'paintsite/profile/profile.html', context)
 
 
@@ -136,7 +139,7 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 def by_tag(request, pk):
     tag = get_object_or_404(SubTag, pk=pk)
-    pps = PictureBoard.objects.filter(is_public=True, tag=pk)
+    pps = asyncio.run(get_pps(is_public=True, tag=pk))
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         q = Q(title__icontains=keyword) | Q(description__icontains=keyword)
@@ -159,7 +162,7 @@ def by_tag(request, pk):
 
 def get_detail_context(request, pk):
     pp = PictureBoard.objects.get(pk=pk)
-    comments = Comment.objects.filter(pp=pk, is_active=True)
+    comments = asyncio.run(get_comments(pp=pk, is_active=True))
     initial = {'pp': pp.pk}
     if request.user.is_authenticated:
         initial['author'] = request.user.username

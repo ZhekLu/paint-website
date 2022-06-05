@@ -10,3 +10,4 @@ coverage
 factory_boy
 Faker~=13.12.0
 parameterized~=0.8.1
+asgiref~=3.5.1

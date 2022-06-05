@@ -8,6 +8,8 @@ from .models import User, SuperTag, SubTag, PictureBoard, Comment
 from .apps import user_registered
 
 
+# User
+
 class LoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
@@ -176,6 +178,8 @@ class RegisterUserForm(forms.ModelForm):
         fields = ('username', 'email', 'password', 'password_confirm',
                   'first_name', 'last_name', 'send_messages')
 
+
+# Pictures
 
 class SubTagForm(forms.ModelForm):
     super_tag = forms.ModelChoiceField(
