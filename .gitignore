@@ -3,9 +3,11 @@ __pycache__
 makefile
 .angular/
 node_modules/
-.env
+.env.*
 .coverage
 coverage.xml
 debug.log
 data_dump.json
 data.json
+db_dump.json
+dump.json

@@ -1,18 +1,25 @@
+import logging
 import os.path
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
+import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
+# Add .env variables anywhere before SECRET_KEY
+if not os.environ.get('DOCKER', default=0):
+    dotenv_file = os.path.join(BASE_DIR, ".env.deb")
+    if os.path.isfile(dotenv_file):
+        dotenv.load_dotenv(dotenv_file)
 
 # UPDATE secret key
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=0))
 
 ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split()
 
@@ -29,7 +36,6 @@ INSTALLED_APPS = [
     'bootstrap4',
     'paintsite.apps.PaintsiteConfig',
     'django_cleanup',
-    'easy_thumbnails',
     'captcha',
     'rest_framework',
     'corsheaders',
@@ -75,12 +81,12 @@ WSGI_APPLICATION = 'paintweb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'paintweb_db',
+        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.postgresql_psycopg2'),
+        'NAME': os.environ['SQL_DATABASE'],
         'USER': os.environ['DATABASE_USER'],
         'PASSWORD': os.environ['DATABASE_PASSWORD'],
-        'HOST': ALLOWED_HOSTS[0],
-        'PORT': '5432',
+        'HOST': os.environ.get('SQL_HOST', 'localhost'),
+        'PORT': os.environ.get('SQL_PORT', '5432'),
     }
 }
 
@@ -131,17 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-THUMBNAIL_ALIASES = {
-    '': {
-        'default': {
-            'size': (96, 96),
-            'crop': 'scale',
-        }
-    }
-}
-
-THUMBNAIL_BASEDIR = 'thumbnails'
 
 # API permissions
 
