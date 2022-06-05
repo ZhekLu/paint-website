@@ -8,3 +8,4 @@ node_modules/
 coverage.xml
 debug.log
 data_dump.json
+data.json
