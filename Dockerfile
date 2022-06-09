@@ -24,5 +24,7 @@ RUN chmod +x /paintweb/entrypoint.sh
 # copy project
 COPY . .
 
+EXPOSE $PORT
+
 # run entrypoint.sh
 ENTRYPOINT ["/paintweb/entrypoint.sh"]

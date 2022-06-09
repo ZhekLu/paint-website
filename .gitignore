@@ -11,3 +11,4 @@ data_dump.json
 data.json
 db_dump.json
 dump.json
+.env
