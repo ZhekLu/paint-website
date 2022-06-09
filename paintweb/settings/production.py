@@ -1,3 +1,5 @@
+import dj_database_url
+
 from paintweb.settings.common import *
 
 DEBUG = False
@@ -16,3 +18,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = "/static/"
 # WHITENOISE_ROOT?
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+db_from_env = dj_database_url.config(
+    default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+DATABASES['default'].update(db_from_env)
