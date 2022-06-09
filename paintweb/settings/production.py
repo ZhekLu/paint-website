@@ -2,7 +2,7 @@ import dj_database_url
 
 from paintweb.settings.common import *
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('PRODUCTION_HOST')]
 CSRF_TRUSTED_ORIGINS = ["https://"+str(os.environ.get("PRODUCTION_HOST"))]
