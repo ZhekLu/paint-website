@@ -32,4 +32,4 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # run entrypoint.sh
 #RUN ["chmod", "+x", "/paintweb/entrypoint.sh"]
-ENTRYPOINT ["./paintweb/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
