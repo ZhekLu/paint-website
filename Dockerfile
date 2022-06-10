@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 dependencies
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev curl
 
 # install dependencies
 RUN pip install --upgrade pip
@@ -26,6 +26,8 @@ COPY . .
 
 EXPOSE $PORT
 
-#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# bash setting
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 # run entrypoint.sh
 ENTRYPOINT ["/paintweb/entrypoint.sh"]
