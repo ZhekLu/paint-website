@@ -27,6 +27,7 @@ COPY . .
 EXPOSE $PORT
 
 # bash setting
+CMD bash heroku-exec.sh
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # run entrypoint.sh
