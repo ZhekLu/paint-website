@@ -26,6 +26,6 @@ COPY . .
 
 EXPOSE $PORT
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # run entrypoint.sh
 ENTRYPOINT ["/paintweb/entrypoint.sh"]
