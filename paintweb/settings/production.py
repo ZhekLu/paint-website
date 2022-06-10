@@ -4,7 +4,7 @@ from paintweb.settings.common import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('PRODUCTION_HOST')]
+ALLOWED_HOSTS = ['0.0.0.0', os.environ.get('PRODUCTION_HOST')]
 CSRF_TRUSTED_ORIGINS = ["https://"+str(os.environ.get("PRODUCTION_HOST"))]
 
 INSTALLED_APPS.extend(["whitenoise.runserver_nostatic"])
