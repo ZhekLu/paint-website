@@ -24,10 +24,6 @@ RUN chmod +x /paintweb/entrypoint.sh
 # copy project
 COPY . .
 
-RUN echo "Collect static..."
-RUN python manage.py collectstatic --noinput
-RUN echo "Done."
-
 EXPOSE $PORT
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
