@@ -18,8 +18,8 @@ RUN pip install -r requirements.txt
 
 # copy entrypoint.sh
 COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' entrypoint.sh
-RUN chmod +x entrypoint.sh
+#RUN sed -i 's/\r$//g' /paintweb/entrypoint.sh
+#RUN chmod +x /paintweb/entrypoint.sh
 
 # copy project
 COPY . .
@@ -30,4 +30,5 @@ EXPOSE $PORT
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # run entrypoint.sh
+RUN ["chmod", "+x", "/paintweb/entrypoint.sh"]
 ENTRYPOINT ["/paintweb/entrypoint.sh"]
