@@ -1,0 +1,36 @@
+{% extends 'layout/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %} User deletion {% endblock %}
+
+{% block content %}
+    <div class="content">
+    <div class="page-inner">
+        <h4 class="page-title">Deletion of {{ object.username }} profile</h4>
+    </div>
+    <div class="row">
+            <div class="col-4 ml-auto mr-auto">
+                <div class="card text-sm-center">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <span>
+                                Are you sure to delete account?
+                            </span>
+                        </div>
+                    </div>
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="card-action">
+                            <button type="submit" class="btn btn-danger btn-border">Delete</button>
+                            &nbsp; &nbsp;
+                            <a href="{% url 'paintsite:profile' %}" class="btn btn-info btn-border">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

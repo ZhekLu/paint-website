@@ -1,0 +1,56 @@
+{#{% extends "basic.html" %}#}
+
+{% load static %}
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/paint_style.css' %}">
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/toolbox.css' %}">
+
+{% block content %}
+	<div id="toolbar" style="z-index: 3">
+		<div id="rad">
+			<input type="checkbox" id="fill_checker"/>Fill
+            <input type="number" id="width_chooser"
+                   min="1" max="1000" value="2" placeholder="line width">
+            <span class="validity"></span>
+		</div>
+		<div id="colors">
+            <input type="color" id="background_color">
+            <input type="color" id="line_color">
+		</div>
+        <a href="{% url 'paintapp:info' %}">Back to site</a>
+	</div>
+
+	<div id="footbar" style="z-index: 2">
+		<div id="shapset">
+			<button id="clear" class="shape" onclick="reset()">Clear</button>
+			<button id="circle" class="shape" onclick="set_tool('circle')">Ellipse</button>
+			<button id="rectangle" class="shape" onclick="set_tool('rectangle')">Rectangle</button>
+			<button id="line" class="shape" onclick="set_tool('line')">Line</button>
+			<button id="polygon" class="shape" onclick="set_tool('polygon')">Polygon</button>
+			<button id="chain" class="shape" onclick="set_tool('polygonal_chain')">Chain</button>
+		</div>
+		<div id="filename">
+			<input id="fname">
+			<button id="save_button" class="shape" onclick="save_picture()">SAVE</button>
+			</div>
+		</div>
+	</div>
+
+	<canvas  id="canvas" width="1360" height="530" style=" background-color: #ffffff; z-index: 0"></canvas>
+	<canvas  id="pre_canvas" width="1360" height="530" style="z-index: 1"></canvas>
+
+    {% load static %}
+    {# scripts #}
+    <script defer src="{% static 'paintapp/scripts/figure.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/line.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygonal_chain.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygon.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/ellipse.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/rectangle.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/figure_manager.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/list_shower.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/simple_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/complex_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/manager.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/main.js' %}"></script>
+{% endblock %}

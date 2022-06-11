@@ -1,0 +1,82 @@
+{% extends 'basic.html'%}
+{% load static %}
+
+{% block content %}
+<!-- Intro Header -->
+<header class="intro" id="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">Paint Website</h1>
+                    <p class="intro-text">A free professional web tool to realize your creative ideas. <br>Created by
+					<a href="https://github.com/ZhekLu">EUGENE ROTKOVICH</a></p>
+					<p class="nav"><a href="#about" class=" btn btn-down page-scroll"><i class="fa fa-angle-down animated"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="container-fluid content-section">
+    <!-- 3 Section -->
+    <section class="container-fluid content-section about text-center">
+        <div class="col-lg-7 col-lg-offset-2">
+            <h2>About</h2>
+            <p>Site designed with an open source HTML (Bootstrap3) theme created by Code Design.
+            This project was created to practice a Python and JavaScript languages, Django framework and OOP programming.</p>
+        </div>
+    </section>
+    <div class="col-md-4 col-gray2">
+        <h3><i class="fa fa-picture-o fa-2x" style="position:absolute; top:25px; right:20px;"></i> Paint</h3>
+        <p>Website contains professional paint tool. There you can draw figures like rectangle, ellipse, polygon, undo last drawing, change colors and save or upload pictures.</p>
+    </div>
+    <div class="col-md-4 col-gray">
+        <h3><i class="fa fa-desktop fa-2x" style="position:absolute; top:25px; right:20px;"></i> Gallery and Profile</h3>
+        <p>This project contains a gallery for viewing your and other people creations, post them for all and comment on interesting pictures. You can use this project without registrations, but only authorized users can see their own gallery and upload new pictures.</p>
+    </div>
+    <div class="col-md-4 col-gray2">
+        <h3><i class="fa fa-code fa-2x" style="position:absolute; top:25px; right:20px;"></i>Technologies</h3>
+        <p>In project were used Python, JavaScript, HTML, CSS<br>Django Framework</p>
+    </div>
+</section>
+
+<!-- Download Section -->
+<section id="download" class="content-section text-center">
+    <div class="overlay">
+        <div class="download-section">
+
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Some extra information</h2>
+                    <p>The theme is open source, and you can use it for any purpose, personal or commercial. You can download <a href="http://codedesign.elkind.net/themes/basicelement/ ">Basic Element</a> for free on the preview page at CODE/DESIGN.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container text-center">
+        <p>Copyright &copy; Paint Website 2022</p>
+    </div>
+</footer>
+
+<!-- jQuery -->
+{#<script src={% static "newhtml/js/jquery.js" %}></script>#}
+
+<!-- Bootstrap Core JavaScript -->
+{#<script src={% static "newhtml/js/bootstrap.min.js" %}></script>#}
+
+<!-- Plugin JavaScript -->
+{#<script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.3.1-min.js"></script>#}
+{#<script src={% static "newhtml/js/jquery.easing.min.js" %}></script>#}
+{#<script src={% static "newhtml/js/SmoothScroll.js" %}></script>#}
+{##}
+{#<!-- Custom Theme JavaScript -->#}
+{#<script src={% static "newhtml/js/basicelement.js" %}></script>#}
+
+{% endblock %}

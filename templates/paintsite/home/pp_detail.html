@@ -1,0 +1,159 @@
+{% extends "layout/base.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}{{ pp.title }} - {{ pp.tag.name }}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+            <div class="card">
+				<div class="card-body">
+					<div class="row">
+                        <!-- Post -->
+						<div class="col-12 col-md-8">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="avatar">
+                                            <span class="avatar-title rounded-circle border border-white">
+                                                {{ pp.author.get_initial }}
+                                            </span>
+                                        </div>
+                                        <div class="info-post ml-2">
+                                            <p class="username">{{ pp.author.username }}</p>
+                                            <p class="date text-muted">{{ pp.created_at }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <p class="card-category text-info mb-1">
+                                        <a href="{% url 'paintsite:by_tag' pk=pp.tag.pk %}">{{ pp.tag }}</a>
+                                    </p>
+                                    <h3 class="card-title">
+                                            {{ pp.title }}
+                                    </h3>
+                                    <p class="card-text">{{ pp.description }}</p>
+                                    {% block back_url %}
+                                    <a href="{% url 'paintsite:by_tag' pk=pp.tag.pk %}{{ all }}" class="btn btn-primary btn-rounded btn-border btn-sm">Back</a>
+                                    {% endblock %}
+                                </div>
+                            </div>
+						</div>
+                        <!-- Comments -->
+						<div class="col-6 col-md-4">
+                            <div class="card full-height">
+                                <div class="card-header">
+                                    <div class="card-head-row">
+                                        <div class="card-title">Comments</div>
+                                    </div>
+                                </div>
+						        <div class="card-body">
+                                    {% if comments %}
+                                        {% for comment in comments %}
+                                            <div class="d-flex">
+                                                <div class="avatar avatar">
+                                                    <span class="avatar-title rounded-circle border border-white bg-info">{{ comment.get_author_initial }}</span>
+                                                </div>
+                                                <div class="flex-1 ml-3 pt-1">
+                                                    <h6 class="text-uppercase fw-bold mb-1">{{ comment.author }}</h6>
+                                                    <span class="text-muted">{{ comment.content }}</span>
+                                                </div>
+                                                <div class="float-right pt-1">
+                                                <small class="text-muted">{{ comment.created_at }}</small>
+                                                </div>
+                                            </div>
+                                            <div class="separator-dashed"></div>
+                                        {% endfor %}
+                                    {% else %}
+                                        There are no comments here yet.
+                                    {% endif %}
+                                    <!-- Add comment -->
+                                    <div class="d-flex">
+                                        <div class="form-group">
+										<label for="comment">Add comment</label>
+										<form method="post">
+                                        {% csrf_token %}
+                                        {% bootstrap_form form layout='horizontal' %}
+                                        {% buttons submit='Add'%}{% endbuttons %}
+                                        </form>
+									    </div>
+                                    </div>
+						        </div>
+					        </div>
+						</div>
+					</div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="{% static "paintsite/assets/js/setting-demo.js" %}"></script>
+	<script>
+		$('#lineChart').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#177dff',
+			fillColor: 'rgba(23, 125, 255, 0.14)'
+		});
+
+		$('#lineChart2').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#f3545d',
+			fillColor: 'rgba(243, 84, 93, .14)'
+		});
+
+		$('#lineChart3').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+
+		$('#lineChart4').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart5').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart6').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+	</script>
+
+{% endblock javascripts %}

@@ -1,0 +1,124 @@
+{% extends "layout/base_with_search.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block title %}{{ tag }}{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+	<div class="content">
+		<div class="page-inner">
+			<!-- Tag Pictures -->
+			<h4 class="page-title">{{ tag }}</h4>
+            {% if pps %}
+                <div class="row">
+                    {% for pp in pps %}
+                    <div class="col-md-4">
+                        <div class="card card-post card-round">
+                            {% url 'paintsite:detail' tag_pk=tag.pk pk=pp.pk as url %}
+                            <a href="{{ url }}{{ all }}">
+                                <img class="card-img-top" src="{{ pp.image.url }}" alt="Card image cap">
+                            </a>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="avatar">
+										<span class="avatar-title rounded-circle border border-white">
+                                            {{ pp.author.get_initial }}
+                                        </span>
+									</div>
+                                    <div class="info-post ml-2">
+                                        <p class="username">{{ pp.author.username }}</p>
+                                        <p class="date text-muted">{{ pp.created_at }}</p>
+                                    </div>
+                                </div>
+                                <div class="separator-solid"></div>
+                                <p class="card-category text-info mb-1">
+                                    <a href="{% url 'paintsite:by_tag' pk=pp.tag.pk %}">{{ pp.tag }}</a>
+                                </p>
+                                <h3 class="card-title">
+                                    <a href="{{ url }}{{ all }}">
+                                        {{ pp.title }}
+                                    </a>
+                                </h3>
+                                <p class="card-text">{{ pp.description }}</p>
+                                <a href="{{ url }}{{ all }}" class="btn btn-primary btn-rounded btn-border btn-sm">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% bootstrap_pagination page url=keyword %}
+            {% else %}
+            <h2 class="mb-2">There's no any pictures in this category yet.</h2>
+            {% endif %}
+		</div>
+	</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="{% static "paintsite/assets/js/setting-demo.js" %}"></script>
+	<script>
+		$('#lineChart').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#177dff',
+			fillColor: 'rgba(23, 125, 255, 0.14)'
+		});
+
+		$('#lineChart2').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#f3545d',
+			fillColor: 'rgba(243, 84, 93, .14)'
+		});
+
+		$('#lineChart3').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: '#ffa534',
+			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+
+		$('#lineChart4').sparkline([102,109,120,99,110,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart5').sparkline([99,125,122,105,110,124,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+
+		$('#lineChart6').sparkline([105,103,123,100,95,105,115], {
+			type: 'line',
+			height: '70',
+			width: '100%',
+			lineWidth: '2',
+			lineColor: 'rgba(255, 255, 255, .5)',
+			fillColor: 'rgba(255, 255, 255, .15)'
+		});
+	</script>
+
+{% endblock javascripts %}

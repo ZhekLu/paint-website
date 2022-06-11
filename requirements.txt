@@ -1,0 +1,16 @@
+Django~=4.0.4
+psycopg2-binary==2.9.3
+django-bootstrap4==22.1
+django-cleanup==6.0.0
+django-simple-captcha~=0.5.17
+djangorestframework~=3.13.1
+django-cors-headers==3.12.0
+python-dotenv~=0.20.0
+coverage==6.4
+factory_boy==3.2.1
+Faker~=13.12.0
+parameterized~=0.8.1
+asgiref~=3.5.1
+gunicorn==20.1.0
+whitenoise==6.2.0
+dj-database-url==0.5.0

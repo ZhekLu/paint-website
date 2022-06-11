@@ -1,0 +1,83 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block links %}
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/paint_style.css' %}">
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/toolbox.css' %}">
+<link rel='stylesheet' type='text/css' href="{% static 'paintapp/styles/figure_list.css' %}">
+{% endblock %}
+
+{% block title %}-Paint{% endblock %}
+
+{% block content %}
+
+<!-- About Section -->
+<section id="paint" class="container-fluid content-section">
+
+    <div id="toolbox" class="toolbox">
+        <button class="button" onclick="set_tool('line')"
+                style="background-image: url('{% static 'paintapp/images/line.svg' %}')"></button>
+        <button class="button" onclick="set_tool('circle')"
+                style="background-image: url('{% static 'paintapp/images/circle.svg' %}')"></button>
+        <button class="button" onclick="set_tool('rectangle')"
+                style="background-image: url('{% static 'paintapp/images/rectangle.svg' %}')"></button>
+        <button class="button" onclick="set_tool('polygonal_chain')"
+                style="background-image: url('{% static 'paintapp/images/curve.svg' %}')"></button>
+        <button class="button" onclick="set_tool('polygon')"
+                style="background-image: url('{% static 'paintapp/images/polygon.svg' %}')"></button>
+        <button class="button" onclick="reset()"
+                style="background-image: url('{% static 'paintapp/images/erase.svg' %}')"></button>
+        <div id="colors">
+            <input type="color" id="background_color" class="button">
+            <input type="color" id="line_color" class="button">
+		</div>
+        <input type="checkbox" id="fill_checker" class="button"/>Fill
+        <input type="number" id="width_chooser" class="button"
+               min="1" max="1000" value="2" placeholder="line width">
+        <span class="validity"></span>
+        <button class="button" onclick="save_picture()">SAVE</button>
+        <button class="button" onclick="load_picture()">LOAD</button>
+    </div>
+
+
+    <div id="coords">x:y</div>
+    <input type="file" id="file_selector"/>
+
+	<canvas  id="canvas" width="1300" height="600" style=" background-color: #ffffff; z-index: 0"></canvas>
+	<canvas  id="pre_canvas" width="1300" height="600" style="z-index: 1"></canvas>
+
+    <div id="figure_list"></div>
+
+    {% load static %}
+    {# scripts #}
+    <script defer src="{% static 'paintapp/scripts/figure.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/line.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygonal_chain.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/polygon.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/ellipse.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/rectangle.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/figure_manager.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/list_shower.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/simple_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/complex_figure_drawer.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/manager.js' %}"></script>
+    <script defer src="{% static 'paintapp/scripts/main.js' %}"></script>
+</section>
+
+
+<!-- jQuery -->
+<script src={% static "newhtml/js/jquery.js" %}></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src={% static "newhtml/js/bootstrap.min.js" %}></script>
+
+<!-- Plugin JavaScript -->
+{#<script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.3.1-min.js"></script>#}
+<script src={% static "newhtml/js/jquery.easing.min.js" %}></script>
+<script src={% static "newhtml/js/SmoothScroll.js" %}></script>
+
+<!-- Custom Theme JavaScript -->
+<script src={% static "newhtml/js/basicelement.js" %}></script>
+{% endblock %}
+
