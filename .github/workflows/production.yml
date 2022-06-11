@@ -16,7 +16,7 @@ jobs:
       - name: Build-Up docker compose
         run: docker-compose up -d --build
       - name: Testing
-        run: docker-compose exec web python3 manage.py test
+        run: docker-compose exec web python manage.py test
       - name: Generate Report
         run: |
             docker-compose exec web coverage run manage.py test   
