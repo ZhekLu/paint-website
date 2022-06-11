@@ -119,7 +119,7 @@ class RegisterUserForm(forms.ModelForm):
                                        ))
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
+        self.domain = kwargs.pop('domain')
         super(RegisterUserForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget = forms.TextInput(
@@ -170,7 +170,7 @@ class RegisterUserForm(forms.ModelForm):
         user.is_activated = False
         if commit:
             user.save()
-        user_registered.send(RegisterUserForm, instance=user, request=self.request)
+        user_registered.send(RegisterUserForm, instance=user, domain=self.domain)
         return user
 
     class Meta:

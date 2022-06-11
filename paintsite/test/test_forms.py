@@ -77,19 +77,19 @@ class RegisterUserFormTest(TestCase):
     def test_different_passwords(self):
         form_data = {'username': 'unique', 'email': 'good@mail.ru',
                      'password': 'hArD1234_!', 'password_confirm': 'hArD1234_'}
-        form = RegisterUserForm(data=form_data)
+        form = RegisterUserForm(data=form_data, domain='test_domain')
         self.assertFalse(form.is_valid())
 
     def test_same_passwords(self):
         form_data = {'username': 'unique', 'email': 'good@mail.ru',
                      'password': 'hArD1234_!', 'password_confirm': 'hArD1234_!'}
-        form = RegisterUserForm(data=form_data)
+        form = RegisterUserForm(data=form_data, domain='test_domain')
         self.assertTrue(form.is_valid())
 
     def test_save(self):
         form_data = {'username': 'unique', 'email': 'good@mail.ru',
                      'password': 'hArD1234_!', 'password_confirm': 'hArD1234_!'}
-        form = RegisterUserForm(data=form_data)
+        form = RegisterUserForm(data=form_data, domain='test_domain')
         self.assertEquals(0, User.objects.all().count())
         form.save()
         self.assertEquals(User.objects.all().count(), 1)

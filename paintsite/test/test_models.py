@@ -20,51 +20,51 @@ class UserModelTest(TestCase):
     # Labels Tests
 
     def test_first_name_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         field_label = user._meta.get_field('first_name').verbose_name
         self.assertEquals(field_label, 'first name')
 
     def test_last_name_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         field_label = user._meta.get_field('last_name').verbose_name
         self.assertEquals(field_label, 'last name')
 
     def test_user_name_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         field_label = user._meta.get_field('username').verbose_name
         self.assertEquals(field_label, 'username')
 
     def test_is_activated_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         field_label = user._meta.get_field('is_activated').verbose_name
         self.assertEquals(field_label, 'Was activated?')
 
     def test_send_messages_label(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         field_label = user._meta.get_field('send_messages').verbose_name
         self.assertEquals(field_label, 'Want to get messages about new comments?')
 
     # Max length
 
     def test_first_name_max_length(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         max_length = user._meta.get_field('first_name').max_length
         self.assertEquals(max_length, 150)
 
     def test_last_name_max_length(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         max_length = user._meta.get_field('last_name').max_length
         self.assertEquals(max_length, 150)
 
     def test_user_name_max_length(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         max_length = user._meta.get_field('username').max_length
         self.assertEquals(max_length, 150)
 
     # Other
 
     def test_object_name_is_username(self):
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='big_bob')
         expected_object_name = user.username
         self.assertEquals(expected_object_name, str(user))
 
@@ -97,10 +97,10 @@ class SuperTagModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        SuperTagFactory.create()
+        SuperTagFactory.create(name='testTag')
 
     def test__str__(self):
-        tag = SuperTag.objects.get(id=1)
+        tag = SuperTag.objects.get(name='testTag')
         self.assertEquals(tag.name, str(tag))
 
 

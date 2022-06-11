@@ -9,7 +9,7 @@ user_registered = Signal()
 
 
 def user_registered_dispatcher(sender, **kwargs):
-    send_activation_notification(kwargs['instance'], kwargs['request'])
+    send_activation_notification(kwargs['instance'], kwargs['domain'])
 
 
 user_registered.connect(user_registered_dispatcher)

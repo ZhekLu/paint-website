@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.paginator import Paginator
 from django.core.signing import BadSignature
 from django.db.models import Q
@@ -90,7 +91,8 @@ class RegisterUserView(CreateView):
 
     def get_form_kwargs(self):
         kwargs = super(RegisterUserView, self).get_form_kwargs()
-        kwargs.update({'request': self.request})
+        current_site = get_current_site(self.request)
+        kwargs.update({'domain': current_site.domain})
         return kwargs
 
 
