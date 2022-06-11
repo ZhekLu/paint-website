@@ -20,5 +20,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
 else:
-    urlpatterns.insert(0, re_path(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}))
-    urlpatterns.insert(0, re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}))
+    # urlpatterns.insert(0, re_path(r'^static/(?P<path>.*)$', serve, {'document_root': STATIC_ROOT}))
+    # urlpatterns.insert(0, re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}))
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
