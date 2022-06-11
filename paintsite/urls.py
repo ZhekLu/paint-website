@@ -1,9 +1,5 @@
 from django.urls import path
 
-from django.urls import re_path
-from django.conf import settings
-from django.views.static import serve
-
 from paintsite.views import index, other_page, PSLoginView, profile, PSLogoutView, ChangeUserInfoView, \
     PSPasswordChangeView, RegisterUserView, RegisterDoneView, user_activate, DeleteUserView, by_tag, detail, \
     profile_pp_detail, profile_pp_add, profile_pp_delete, profile_pp_change
@@ -29,8 +25,3 @@ urlpatterns = [
     path('<str:page>/', other_page, name='other'),
     path('', index, name='index'),
 ]
-
-# For media loading
-if not settings.DEBUG:
-    urlpatterns.insert(0, re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}))
-    urlpatterns.insert(0, re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}))
