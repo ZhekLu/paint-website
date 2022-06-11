@@ -1,0 +1,34 @@
+name: Heroku Main Production Workflow
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, compose]
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ '3.8.10' ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build-Up docker compose
+        run: docker-compose up -d --build
+      - name: Testing
+        run: docker-compose exec web python3 manage.py test
+      - name: Generate Report
+        run: |
+            docker-compose exec web coverage run manage.py test   
+            docker-compose exec web coverage report
+            docker-compose exec web coverage xml --data-file='.coverage'
+      - name: Upload
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          usedocker: true
