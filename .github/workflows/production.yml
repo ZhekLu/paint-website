@@ -10,6 +10,8 @@ jobs:
     strategy:
       matrix:
         python-version: [ '3.8.10' ]
+    env:
+      working-directory: ./
 
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +31,7 @@ jobs:
           envkey_PRODUCTION_HOST: ${{ secrets.PRODUCTION_HOST }}
           envkey_SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
           envkey_SQL_HOST: ${{ secrets.SQL_HOST }}
-          directory: ../../
+          directory: ./
           file_name: .env
           fail_on_empty: false
       - name: Build-Up docker compose
