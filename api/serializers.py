@@ -12,7 +12,7 @@ class PictureBoardSerializer(serializers.ModelSerializer):
 class PPDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = PictureBoard
-        fields = ('id', 'title', 'description', 'created_at', 'author', 'image')
+        fields = ('id', 'title', 'description', 'created_at', 'author', 'image', 'picture_url')
 
 
 class CommentSerializer(serializers.ModelSerializer):
