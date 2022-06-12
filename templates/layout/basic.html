@@ -18,7 +18,6 @@
     </header>
     <div class="row">
         <ul class="col nav justify-content-end border">
-            <li class="nav-item"><a class="nav-link" href="{% url 'paintsite:register' %}">Registration</a></li>
             {% if user.is_authenticated %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
@@ -36,6 +35,7 @@
                 </div>
             </li>
             {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'paintsite:register' %}">Registration</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'paintsite:login' %}">Sign in</a></li>
             {% endif %}
         </ul>
