@@ -82,7 +82,7 @@ class PictureBoardAdmin(admin.ModelAdmin):
     fields = (
         ('tag', 'author'),
         'title', 'description',
-        'image',
+        'image', 'picture_url',
         'is_public'
     )
 
