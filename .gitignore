@@ -12,3 +12,4 @@ data.json
 db_dump.json
 dump.json
 .env
+docker-compose.test.yml

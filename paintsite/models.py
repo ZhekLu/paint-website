@@ -73,10 +73,11 @@ class PictureBoard(models.Model):
     tag = models.ForeignKey(SubTag, on_delete=models.PROTECT, verbose_name='Tag')
     title = models.CharField(max_length=40, verbose_name='Picture name')
     description = models.TextField(blank=True, verbose_name='Description')
-    image = models.ImageField(upload_to=get_timestamp_path, verbose_name='Picture')
+    image = models.ImageField(blank=True, upload_to=get_timestamp_path, verbose_name='Picture')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Picture author')
     is_public = models.BooleanField(default=True, db_index=True, verbose_name='Show in gallery?')
     created_at = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Published')
+    picture_url = models.URLField(verbose_name='Picture url', max_length=200)
 
     class Meta:
         verbose_name = 'Picture'
