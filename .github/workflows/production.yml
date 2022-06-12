@@ -41,9 +41,9 @@ jobs:
         run: docker compose exec web python3 manage.py test
       - name: Generate Report
         run: |
-            docker-compose exec web coverage run manage.py test   
-            docker-compose exec web coverage report
-            docker-compose exec web coverage xml --data-file='.coverage'
+            docker compose exec web coverage run manage.py test   
+            docker compose exec web coverage report
+            docker compose exec web coverage xml --data-file='.coverage'
       - name: Upload
         uses: codecov/codecov-action@v2
         with:
