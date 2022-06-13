@@ -211,3 +211,8 @@ EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = os.environ['EMAIL_PORT']
+
+# CELERY
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_TIMEZONE = 'Europe/Kiev'
+CELERY_RESULT_BACKEND = "redis://redis:6379"
